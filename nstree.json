@@ -1,0 +1,22 @@
+{
+  "name": "web-vue3",
+  "tree": [
+    {
+      "name": "src",
+      "body": "",
+      "index": 9,
+      "bold": false,
+      "path": "src",
+      "children": [
+        {
+          "name": "styles",
+          "body": "",
+          "index": 9,
+          "bold": false,
+          "path": "src/styles",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

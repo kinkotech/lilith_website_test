@@ -1,63 +1,62 @@
 .activity {
-	width: 100%;
+	width: 10rem;
 	height: auto;
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	font-family: Inter;
-
-	.activity-top {
-		position: absolute;
-		top: 0;
+	font-size: .33rem;
+	.top {
 		width: 100%;
-		display: flex;
-		justify-content: space-between;
-
-		.logo {
-			width: 2rem;
-			margin-left: .427rem;
+		height: 11.98rem;
+		background: url('@/assets/img/bg_01.jpg') no-repeat;
+		background-size: 100% 100%;
+		.header {
+			display: flex;
+			justify-content: space-between;
+			.logo {
+				width: 2rem;
+				margin-left: .427rem;
+			}
+	
+			.login-btn {
+				width: 3.8rem;
+			}
 		}
-
-		.login-btn {
-			width: 3.8rem;
-		}
+		
 	}
-
 	.main {
 		display: flex;
 		flex-direction: column;
-
-		.main-bg02 {
+		.red-envelope-box {
 			width: 100%;
-			height: 10rem;
+			height: 10.48rem;
 			background: url('@/assets/img/bg_02.png') no-repeat;
-			background-size: 100% auto;
+			background-size: cover;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-
 			.red-envelope {
 				width: 6.28rem;
 				margin-top: 1.9rem;
 				margin-left: 1rem;
 			}
 		}
-
-		.claim-now {
+		.claim-now-box {
 			width: 100%;
+			height: 1.93rem;
 			background: url('@/assets/img/bg_03.png') no-repeat;
-			background-size: 100% auto;
+			background-size: 100% 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-
 			.claim-now-btn {
 				width: 5.7rem;
 				padding: .3rem 0;
 			}
 		}
 
-		.main-bg04 {
+		.claim-text-box {
 			width: 100%;
 			height: 7.9rem;
 			background: url('@/assets/img/bg_04.png') no-repeat;
@@ -78,11 +77,12 @@
 			}
 		}
 
-		.main-bg05 {
+		.friends-list-box {
 			width: 100%;
-			height: 7rem;
+			height: 7.03rem;
+			padding-top: .3rem;
 			background: url('@/assets/img/bg_05.png') no-repeat;
-			background-size: 100% auto;
+			background-size: 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -132,11 +132,11 @@
 			}
 		}
 
-		.main-bg06 {
+		.welfare-top-box {
 			width: 100%;
-			height: 7.3rem;
+			height: 7.1rem;
 			background: url('@/assets/img/bg_06.png') no-repeat;
-			background-size: 100% auto;
+			background-size: 100% 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -155,11 +155,11 @@
 			}
 		}
 
-		.main-bg07 {
+		.welfare-bottom-box {
 			width: 100%;
-			height: 6.4rem;
+			height: 6.2rem;
 			background: url('@/assets/img/bg_07.jpg') no-repeat;
-			background-size: 100% auto;
+			background-size: 100% 100%;
 			display: flex;
 			justify-content: center;
 
@@ -202,11 +202,11 @@
 			}
 		}
 
-		.main-bg08 {
+		.use-title-box {
 			width: 100%;
-			height: 2.4rem;
+			height: 2.24rem;
 			background: url('@/assets/img/bg_08.png') no-repeat;
-			background-size: 100% auto;
+			background-size: 100% 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -217,11 +217,11 @@
 			}
 		}
 
-		.main-bg09 {
+		.use-text-box {
 			width: 100%;
-			height: 2.96rem;
+			height: 2.74rem;
 			background: url('@/assets/img/bg_09.jpg') no-repeat;
-			background-size: 100% auto;
+			background-size: 100% 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -239,11 +239,11 @@
 			}
 		}
 
-		.main-bg10 {
+		.tips-box {
 			width: 100%;
-			height: 2.2rem;
+			height: 2.35rem;
 			background: url('@/assets/img/bg_10.png') no-repeat;
-			background-size: 100% auto;
+			background-size: 100% 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -254,11 +254,11 @@
 			}
 		}
 
-		.main-bg11 {
+		.rule-box {
 			width: 100%;
-			height: 22.34rem;
+			height: 25rem;
 			background: url('@/assets/img/bg_11.jpg') no-repeat;
-			background-size: 100% auto;
+			background-size: 100% 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -278,7 +278,7 @@
 
 			.title-img {
 				width: 22%;
-				margin: 3.3rem 0 .3rem 0;
+				margin: 4.3rem 0 .5rem 0;
 			}
 
 			.list {
@@ -286,7 +286,7 @@
 
 				.item {
 					margin-left: .5rem;
-					margin-top: .15rem;
+					margin-top: .2rem;
 					font-weight: 400;
 					list-style: decimal;
 					&:nth-child(3) {
@@ -296,11 +296,11 @@
 			}
 		}
 
-		.main-bg12 {
+		.footer-bg {
 			width: 100%;
-			height: 2.4rem;
+			height: 2.329rem;
 			background: url('@/assets/img/bg_12.jpg') no-repeat;
-			background-size: 100% auto;
+			background-size: 100% 100%;
 			display: flex;
 			justify-content: center;
 		}

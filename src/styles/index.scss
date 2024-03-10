@@ -44,6 +44,10 @@ img {
 	height: auto;
 }
 
+.w-100 {
+	width: 100%;
+}
+
 /* 适配iphonex */
 
 @supports (bottom: env(safe-area-inset-bottom)) {

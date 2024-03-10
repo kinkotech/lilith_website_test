@@ -4,7 +4,6 @@ import { ref } from 'vue';
 import Footer from '@/components/Footer.vue';
 import Login from '@/assets/img/login.png';
 import Logo from '@/assets/img/logo.png';
-import Bg01 from '@/assets/img/bg_01.jpg';
 import RedEnvelope from '@/assets/img/red-envelope.png';
 import ClaimNow from '@/assets/img/claim-now.png';
 import InviteNow from '@/assets/img/invite-now.png';
@@ -129,22 +128,23 @@ const showPopup = () => {
 
 <template>
   <div class="activity">
-    <div class="activity-top">
-      <img :src="Logo" alt="logo" class="logo">
-      <img :src="Login" alt="登录" @click="showPopup" class="login-btn">
+    <div class="top">
+      <div class="header">
+        <img :src="Logo" alt="logo" class="logo">
+        <img :src="Login" alt="登录" @click="showPopup" class="login-btn">
+      </div>
     </div>
-    <img :src="Bg01" alt="背景图">
     <div class="main">
-      <div class="main-bg02">
+      <div class="red-envelope-box">
         <img :src="RedEnvelope" alt="红包" class="red-envelope">
       </div>
-      <div class="claim-now">
+      <div class="claim-now-box">
         <img :src="ClaimNow" alt="立即领取" class="claim-now-btn">
       </div>
-      <div class="main-bg04">
+      <div class="claim-text-box">
         <p>2024年2月5日11:00 - 2024年2月14日23:59</p>
       </div>
-      <div class="main-bg05">
+      <div class="friends-list-box">
         <ul class="list">
           <li class="header item">
             <div class="item-con">我的好友</div>
@@ -162,11 +162,11 @@ const showPopup = () => {
         <img :src="InviteNow" alt="立即邀请" class="invite-now-btn">
         <div class="text">已邀请{{ people }}/3</div>
       </div>
-      <div class="main-bg06">
+      <div class="welfare-top-box">
         <img :src="Title" alt="" class="title-img">
         <img :src="Qcode" alt="二维码" class="qcode-img">
       </div>
-      <div class="main-bg07">
+      <div class="welfare-bottom-box">
         <ul class="logo-list">
           <li v-for="item in logoList" :key="item.id" class="item">
             <a :href="item.hrefUrl">
@@ -175,25 +175,25 @@ const showPopup = () => {
           </li>
         </ul>
       </div>
-      <div class="main-bg08">
+      <div class="use-title-box">
         <img :src="UseTitle" alt="" class="title-img">
       </div>
-      <div class="main-bg09">
+      <div class="use-text-box">
         <p>用户领取封面后，在手机微信中打开发红包界面前往“红包封面”-“选择封面”即可使用。</p>
       </div>
-      <div class="main-bg10">
+      <div class="tips-box">
         <img :src="TipTitle" alt="" class="title-img">
       </div>
-      <div class="main-bg11">
+      <div class="rule-box">
         <p>用户成功领取封面后，可在3个月内无限次使用。超过3个月后，已领取的封面将自动失效，无法再次使用。已发送的红包展示不会收到影响。</p>
         <img :src="RuleTitle" alt="" class="title-img">
         <ul class="list">
           <li v-for="item in ruleList" :key="item.text" class="item">{{ item.text }}</li>
         </ul>
       </div>
-      <div class="main-bg12"></div>
-      <Footer></Footer>
+      <div class="footer-bg"></div>
     </div>
+    <Footer></Footer>
     <!-- 登录弹窗 -->
     <van-dialog v-model:show="show" :showConfirmButton="showConfirmButton">
       <div class="login">

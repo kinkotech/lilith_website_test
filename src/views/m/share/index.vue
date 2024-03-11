@@ -3,7 +3,7 @@ import Clipboard from 'clipboard';
 import { showToast } from 'vant';
 import 'vant/es/toast/style';
 
-const text = '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站'
+const text = '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站https://test-lilith.kinkotec.cn/'
 const clipboard = new Clipboard('.copy-btn'); // .copy-btn为按钮元素的class名称或选择器
 
 clipboard.on('success', (e) => {

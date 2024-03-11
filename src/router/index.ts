@@ -7,7 +7,8 @@ const PCComponent = () => import("@/views/pc/index.vue");
 const routes = [
   {
     path: "/",
-    component: isMobile() ? MComponent : PCComponent,
+    // component: isMobile() ? MComponent : PCComponent,
+    component: MComponent
   },
   {
     path: "/:pathMatch(.*)*",

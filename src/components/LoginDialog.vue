@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, defineEmits } from 'vue';
 import { showToast } from 'vant';
+import { sessionStorage } from '@/utils/storage';
 import 'vant/es/toast/style';
 
 const checked = ref(false);
@@ -40,6 +41,36 @@ const onSubmit = (values: any) => {
 	} else if (!values.radio) {
 		showToast('请先勾选隐私协议和服务条款');
 	} else {
+		const list = [{
+			id: '001',
+			num: '189****8989',
+			time: '02/16 19:00'
+		}, {
+			id: '002',
+			num: '189****8989',
+			time: '02/16 19:00'
+		}, {
+			id: '003',
+			num: '189****8989',
+			time: '02/16 19:00'
+		}, {
+			id: '004',
+			num: '189****8989',
+			time: '02/16 19:00'
+		}, {
+			id: '005',
+			num: '189****8989',
+			time: '02/16 19:00'
+		}, {
+			id: '006',
+			num: '189****8989',
+			time: '02/16 19:00'
+		}, {
+			id: '007',
+			num: '189****8989',
+			time: '02/16 19:00'
+		}]
+		sessionStorage.set('friendsList', list)
 		emit('closePop', false)
 		showToast('登录成功');
 	}
@@ -284,7 +315,7 @@ const onSubmit = (values: any) => {
 				bottom: -4rem;
 
 				.button {
-					width: 5.5rem;
+					width: 4.5rem;
 					height: 1.5rem;
 					background: url('@/assets/img/dialog/confirm-button.png') no-repeat;
 					background-size: 100% auto;

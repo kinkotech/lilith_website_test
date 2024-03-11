@@ -1,18 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { isMobile } from "@/utils/index";
 
-const MComponent = () => import("@/views/m/index.vue");
+const MIndexComponent = () => import("@/views/m/index/index.vue");
 const PCComponent = () => import("@/views/pc/index.vue");
+
+const MShareComponent = () => import("@/views/m/share/index.vue");
 
 const routes = [
   {
     path: "/",
     // component: isMobile() ? MComponent : PCComponent,
-    component: MComponent
+    component: MIndexComponent
   },
   {
     path: "/:pathMatch(.*)*",
     redirect: "/",
+  },
+  {
+    path: "/share",
+    component: MShareComponent
   },
 ];
 

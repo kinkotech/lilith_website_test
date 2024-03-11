@@ -1,14 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
-import { showToast } from 'vant';
-import 'vant/es/toast/style';
-
-const checked = ref(false);
-const username = ref('');
-const code = ref('');
-const invitationCode = ref('usahdgsauxcgh');
-const count = ref(60);
-const counting = ref(false);
+import { defineEmits } from 'vue';
 
 const emit = defineEmits(['closePop']);
 // 关闭弹窗
@@ -68,7 +59,7 @@ const closePop=()=>{
 				bottom: -3.5rem;
 
 				.button {
-					width: 5.5rem;
+					width: 4.5rem;
 					height: 1.5rem;
 					background: url('@/assets/img/dialog/confirm-button.png') no-repeat;
 					background-size: 100% auto;

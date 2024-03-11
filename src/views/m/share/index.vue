@@ -19,15 +19,15 @@ clipboard.on('error', () => {
 
 // 分享
 let appId = 'wxa039b9f506b604a7';
-let timestamp = '';
+let timestamp: any = '';
 let nonceStr = '';
 let signature = '';
-let fxUrl = 'https://test-lilith.kinkotec.cn';
+let fxUrl = 'https://lilith.kinkotec.cn';
 let title = '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站';
 let fxImgUrl = 'https://test-lilith.kinkotec.cn/fx.png';
 wx.config({
     debug: false,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    appId: 'wxa039b9f506b604a7',         // 必填，公众号的唯一标识，填自己的！
+    appId,         // 必填，公众号的唯一标识，填自己的！
     timestamp, // 必填，生成签名的时间戳，刚才接口拿到的数据
     nonceStr,   // 必填，生成签名的随机串
     signature, // 必填，签名，见附录1

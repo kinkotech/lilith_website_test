@@ -87,13 +87,23 @@ const onSubmit = (values: any) => {
 		</div>
 		<div class="login-header">
 			<div class="login-top">
-				<img src="@/assets/img/dialog/dialog-top.png" alt="" class="top-icon">
-				<img src="@/assets/img/dialog/login-title-text-num.png" alt="" class="text-icon">
+				<div class="top-icon">
+					<img src="@/assets/img/dialog/dialog-top.png" alt="">
+				</div>
+				<div class="text-icon">
+					<img src="@/assets/img/dialog/login-title-text-num.png" alt="">
+				</div>
 			</div>
 			<div class="login-title">
-				<img src="@/assets/img/dialog/dialog-left.png" alt="" class="icon">
-				<img src="@/assets/img/dialog/login-title-text-task.png" alt="" class="text-icon">
-				<img src="@/assets/img/dialog/dialog-right.png" alt="" class="icon">
+				<div class="icon">
+					<img src="@/assets/img/dialog/dialog-left.png" alt="">
+				</div>
+				<div class="text-icon">
+					<img src="@/assets/img/dialog/login-title-text-task.png" alt="">
+				</div>
+				<div class="icon">
+					<img src="@/assets/img/dialog/dialog-right.png" alt="">
+				</div>
 			</div>
 		</div>
 		<div class="login-box">
@@ -121,7 +131,7 @@ const onSubmit = (values: any) => {
 							</div>
 						</template>
 					</van-field>
-					<van-field name="radio">
+					<van-field name="radio" class="radio-box">
 						<template #input>
 							<van-checkbox v-model="checked">
 								<template #icon="props">
@@ -149,10 +159,10 @@ const onSubmit = (values: any) => {
 
 .login {
 	width: 100%;
-	height: 7.5rem;
-	padding: 1.45rem .2rem;
+	height: 6.3rem;
+	padding: 1.2rem .2rem;
 	background: url('@/assets/img/dialog/dialog-bg.png') no-repeat;
-	background-size: 100% 100%;
+	background-size: 100% auto;
 	position: relative;
 	.close {
 		position: absolute;
@@ -163,30 +173,30 @@ const onSubmit = (values: any) => {
 	.login-header {
 		width: 100%;
 		position: absolute;
-		top: -2.8rem;
-
+		top: -2.6rem;
+		left: 0;
 		.login-top {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-
+			justify-content: center;
 			.top-icon {
-				width: 3rem;
+				width: 2.5rem;
 			}
-
 			.text-icon {
 				width: 4rem;
-				margin-top: .15rem;
+				margin-top: -.04rem;
 			}
 		}
 
 		.login-title {
+			margin-top: -.19rem;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 
 			.icon {
-				width: 1.5rem;
+				width: 1.85rem;
 			}
 
 			.text-icon {
@@ -199,17 +209,22 @@ const onSubmit = (values: any) => {
 	.login-box {
 		width: 100%;
 		height: 100%;
-		padding-top: .3rem;
+		padding-top: .23rem;
 		background: $dialog-background-color;
 
 		::v-deep input {
-			padding: .1rem .2rem;
+			padding: 0 .2rem;
+			height: .72rem;
+			line-height: .72rem;
 			color: #A63A20;
-			border: 1px solid #E5AF6B;
+			border: 2.5px solid #E5AF6B;
 			border-radius: .1rem;
 			font-weight: 500;
 			background: #fff;
 			font-size: .33rem;
+		}
+		.radio-box {
+			margin-top: -.15rem;
 		}
 
 		::v-deep .van-form {
@@ -228,16 +243,17 @@ const onSubmit = (values: any) => {
 			}
 
 			.send-code-icon {
-				width: 2.6rem;
+				width: 2.1rem;
 				display: flex;
 				justify-content: center;
 			}
 
 			.send-code-disable {
-				padding: .1rem;
+				padding: .02rem .05rem;
 				background: #ccc;
 				border-radius: .08rem;
 				color: #fff;
+				font-size: .33rem;
 			}
 
 			::v-deep .van-checkbox__icon {
@@ -269,7 +285,6 @@ const onSubmit = (values: any) => {
 				color: $theme-color;
 				font-family: "Source Han Sans CN";
 				font-size: .26rem;
-				font-style: normal;
 				font-weight: 500;
 				a {
 					display: inline-block;
@@ -284,7 +299,7 @@ const onSubmit = (values: any) => {
 				align-items: center;
 				justify-content: center;
 				.icon {
-					width: 1.6rem;
+					width: 1.2rem;
 					display: flex;
 					justify-content: center;
 				}
@@ -292,10 +307,11 @@ const onSubmit = (values: any) => {
 				.text {
 					flex: 1;
 					margin-left: .2rem;
-					padding: .17rem 0;
+					height: .72rem;
+					line-height: .72rem;
 					text-align: center;
 					background: #E5AF6B;
-					border: 1.5px solid #FFF;
+					border: 2.5px solid #FFF;
 					border-radius: .08rem;
 					color: $theme-color;
 					font-size: .33rem;
@@ -310,11 +326,10 @@ const onSubmit = (values: any) => {
 				flex-direction: column;
 				align-items: center;
 				position: absolute;
-				bottom: -4rem;
+				bottom: -3.5rem;
 
 				.button {
 					width: 4.5rem;
-					height: 1.5rem;
 					background: url('@/assets/img/dialog/confirm-button.png') no-repeat;
 					background-size: 100% auto;
 					border: 0;
@@ -322,19 +337,29 @@ const onSubmit = (values: any) => {
 				}
 
 				.text {
+					margin-top: .15rem;
+					display: inline-block;
 					color: #FFF;
 					font-family: "Source Han Sans CN";
-					font-size: .2rem;
-					font-style: normal;
-					font-weight: 700;
+					font-size: .24rem;
+					font-weight: 900;
 				}
 			}
 		}
 	}
 
 	::v-deep .van-cell {
-		padding: .1rem .3rem;
+		padding: .14rem .3rem;
 		background: $dialog-background-color;
+		&:first-child{
+			padding-top: 0;
+		}
+	}
+	::v-deep input::placeholder {
+		color: #A63A20;
+	}
+	::v-deep .van-cell:after{
+		border: 0
 	}
 }
 </style>

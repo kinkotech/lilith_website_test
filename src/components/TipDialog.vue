@@ -14,12 +14,20 @@ const closePop=()=>{
 	<div class="tip">
 		<div class="tip-header">
 			<div class="tip-top">
-				<img src="@/assets/img/dialog/dialog-top.png" alt="" class="top-icon">
+				<div class="top-icon">
+					<img src="@/assets/img/dialog/dialog-top.png" alt="">
+				</div>
 			</div>
 			<div class="tip-title">
-				<img src="@/assets/img/dialog/dialog-left.png" alt="" class="icon">
-				<img src="@/assets/img/dialog/tip-title.png" alt="" class="text-icon">
-				<img src="@/assets/img/dialog/dialog-right.png" alt="" class="icon">
+				<div class="icon">
+					<img src="@/assets/img/dialog/dialog-left.png" alt="">
+				</div>
+				<div class="text-icon">
+					<img src="@/assets/img/dialog/tip-title.png" alt="">
+				</div>
+				<div class="icon">
+					<img src="@/assets/img/dialog/dialog-right.png" alt="">
+				</div>
 			</div>
 		</div>
 		<div class="tip-box">
@@ -49,19 +57,14 @@ const closePop=()=>{
 		width: 100%;
 		position: absolute;
 		top: -2.3rem;
-
+		left: 0;
 		.tip-top {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-
+			justify-content: center;
 			.top-icon {
-				width: 3rem;
-			}
-
-			.text-icon {
-				width: 4rem;
-				margin-top: .15rem;
+				width: 2.5rem;
 			}
 		}
 
@@ -71,7 +74,7 @@ const closePop=()=>{
 			align-items: center;
 
 			.icon {
-				width: 2rem;
+				width: 1.85rem;
 			}
 
 			.text-icon {
@@ -95,16 +98,16 @@ const closePop=()=>{
 			margin-top: .2rem;
 		}
 		.p1 {
-			width: 3.5rem;
+			width: 3rem;
 			margin-top: 0;
 		}
 
 		.p2 {
-			width: 4rem;
+			width: 3.5rem;
 		}
 
 		.p3 {
-			width: 6rem;
+			width: 5rem;
 		}
 
 		::v-deep .van-form {

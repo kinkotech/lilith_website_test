@@ -181,7 +181,7 @@
 
 			.logo-list {
 				width: 65%;
-				height: 1.5rem;
+				height: 1.7rem;
 				margin-top: 1rem;
 				display: flex;
 				border-top: 2px solid rgba(179, 41, 0, .5);
@@ -189,30 +189,33 @@
 
 				.item {
 					flex: 1;
-					margin: .3rem 0;
+					margin: .5rem 0;
 					border-right: 2px solid rgba(179, 41, 0, .5);
 					display: flex;
 					align-items: center;
 					justify-content: center;
-
+					a {
+						display: flex;
+						align-items: center;
+					}
 					&:last-child {
 						border: 0;
 					}
 
 					.wx-icon {
-						width: 1rem;
+						width: .8rem;
 					}
 
 					.dy-icon {
-						width: .7rem;
+						width: .65rem;
 					}
 
 					.tap-icon {
-						width: 1rem;
+						width: .9rem;
 					}
 
 					.bilibili-icon {
-						width: 1.4rem;
+						width: 1.2rem;
 					}
 				}
 			}
@@ -272,7 +275,7 @@
 
 		.rule-box {
 			width: 100%;
-			height: 25rem;
+			height: 23rem;
 			background: url('@/assets/img/bg_11.jpg') no-repeat;
 			background-size: 100% 100%;
 			display: flex;
@@ -283,6 +286,9 @@
 			font-size: .33rem;
 			font-style: normal;
 			letter-spacing: 2.5px;
+			.tip-text {
+				width: 80%;
+			}
 
 			p {
 				width: 70%;
@@ -294,17 +300,17 @@
 
 			.title-img {
 				width: 22%;
-				margin: 4.3rem 0 .5rem 0;
+				margin: 4.2rem 0 .58rem 0;
 			}
 
 			.list {
 				width: 70%;
 
 				.item {
-					margin-left: .5rem;
 					margin-top: .2rem;
 					font-weight: 400;
-					list-style: decimal;
+					font-weight: 500;
+					word-break: break-all;
 					&:nth-child(3) {
 						font-weight: 900;
 					}

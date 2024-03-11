@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import wx from 'weixin-js-sdk';
 import Clipboard from 'clipboard';
 import { showToast } from 'vant';
 import 'vant/es/toast/style';
@@ -16,6 +17,55 @@ clipboard.on('error', () => {
     console.warn('无法复制到剪贴板！');
 });
 
+// 分享
+let appId = 'wxa039b9f506b604a7';
+let timestamp = '';
+let nonceStr = '';
+let signature = '';
+let fxUrl = 'https://test-lilith.kinkotec.cn';
+let title = '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站';
+let fxImgUrl = 'https://test-lilith.kinkotec.cn/fx.png';
+wx.config({
+    debug: false,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    appId: 'wxa039b9f506b604a7',         // 必填，公众号的唯一标识，填自己的！
+    timestamp, // 必填，生成签名的时间戳，刚才接口拿到的数据
+    nonceStr,   // 必填，生成签名的随机串
+    signature, // 必填，签名，见附录1
+    jsApiList: [
+    'onMenuShareTimeline',
+    'onMenuShareAppMessage'
+    ]
+})
+
+wx.ready(function () {
+    //分享到朋友圈
+    wx.onMenuShareTimeline({
+        title,   // 分享时的标题
+        link: fxUrl,     // 分享时的链接
+        imgUrl: fxImgUrl,    // 分享时的图标
+        success: function () {
+            showToast("分享成功");
+        },
+        cancel: function () {
+            showToast("取消分享");
+        }
+    });
+    //分享给朋友
+    wx.onMenuShareAppMessage({
+        title,
+        desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...', 
+        link: fxUrl,
+        imgUrl: fxImgUrl,
+        type: '',
+        dataUrl: '', 
+        success: function () {
+            showToast("分享成功");
+        },
+        cancel: function () {
+            showToast("取消分享");
+        }
+    });
+})
 </script>
 
 <template>

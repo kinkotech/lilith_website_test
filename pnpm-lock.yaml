@@ -47,6 +47,9 @@ dependencies:
   vue-router:
     specifier: 4.2.5
     version: 4.2.5(vue@3.4.15)
+  weixin-js-sdk:
+    specifier: ^1.6.5
+    version: registry.npmmirror.com/weixin-js-sdk@1.6.5
 
 devDependencies:
   '@rushstack/eslint-patch':
@@ -4895,6 +4898,12 @@ packages:
     resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz}
     name: tiny-emitter
     version: 2.1.0
+    dev: false
+
+  registry.npmmirror.com/weixin-js-sdk@1.6.5:
+    resolution: {integrity: sha512-Gph1WAWB2YN/lMOFB/ymb+hbU/wYazzJgu6PMMktCy9cSCeW5wA6Zwt0dpahJbJ+RJEwtTv2x9iIu0U4enuVSQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/weixin-js-sdk/-/weixin-js-sdk-1.6.5.tgz}
+    name: weixin-js-sdk
+    version: 1.6.5
     dev: false
 
   registry.npmmirror.com/wrap-ansi@7.0.0:

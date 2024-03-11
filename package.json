@@ -27,7 +27,8 @@
     "unocss": "0.58.5",
     "vant": "4.8.4",
     "vue": "3.4.15",
-    "vue-router": "4.2.5"
+    "vue-router": "4.2.5",
+    "weixin-js-sdk": "^1.6.5"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "1.3.3",

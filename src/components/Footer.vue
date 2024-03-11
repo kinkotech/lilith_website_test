@@ -26,27 +26,28 @@ const list = [{
 
 <template>
     <div class="footer">
+		<img src="@/assets/img/bg_12.jpg" alt="">
         <div class="logo">
-					<img :src="LilisiLogo" alt="logo">
-				</div>
-				<div class="footer-container">
-					<p v-for="item in list" :key="item.text">
-						<a :href="item.href" v-if="item.href">
-							<img :src="item.imgUrl" alt="" v-if="item.imgUrl" class="icon">
-							{{ item.text }}
-						</a>
-						<span v-else>{{ item.text }}</span>
-					</p>
-					<p class="flx">
-						<a href="https://www.lilith.com/termofservice" class="item">服务条款</a>
-						<a href="https://www.lilith.com/privacy"class="item">隐私协议</a>
-					</p>
-					<p>©莉莉丝游戏版权所有</p>
-					<p class="flx">
-						<a href="http://www.shjbzx.cn/" class="item"><img :src="Jubao" alt=""></a>
-						<a href="https://www.12377.cn/" class="item"><img :src="Youhai" alt=""></a>
-					</p>
-				</div>
+			<img :src="LilisiLogo" alt="logo">
+		</div>
+		<div class="footer-container">
+			<p v-for="item in list" :key="item.text">
+				<a :href="item.href" v-if="item.href">
+					<img :src="item.imgUrl" alt="" v-if="item.imgUrl" class="icon">
+					{{ item.text }}
+				</a>
+				<span v-else>{{ item.text }}</span>
+			</p>
+			<p class="flx">
+				<a href="https://www.lilith.com/termofservice" class="item">服务条款</a>
+				<a href="https://www.lilith.com/privacy"class="item">隐私协议</a>
+			</p>
+			<p>©莉莉丝游戏版权所有</p>
+			<p class="flx">
+				<a href="http://www.shjbzx.cn/" class="item"><img :src="Jubao" alt=""></a>
+				<a href="https://www.12377.cn/" class="item"><img :src="Youhai" alt=""></a>
+			</p>
+		</div>
     </div>
 </template>
 

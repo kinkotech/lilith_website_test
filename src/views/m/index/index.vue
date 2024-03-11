@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { storage, sessionStorage } from '@/utils/storage';
+import {useRouter} from 'vue-router'
 import Footer from '@/components/Footer.vue';
 import LoginDialog from "@/components/LoginDialog.vue";
+import ScanDialog from '@/components/ScanDialog.vue';
+import TipDialog from '@/components/TipDialog.vue';
+import EndDialog from '@/components/EndDialog.vue';
+import RedEnvelopeDialog from '@/components/RedEnvelopeDialog.vue';
 import Login from '@/assets/img/login.png';
 import Logo from '@/assets/img/logo.png';
 import RedEnvelope from '@/assets/img/red-envelope.png';
@@ -18,40 +24,21 @@ import TipTitle from '@/assets/img/tip-title.png';
 import RuleTitle from '@/assets/img/rule-title.png';
 import "./index.scss";
 
+const router=useRouter()
 
-const show = ref(true);
+// 弹窗变量
+const showLogin = ref(false);
+const showScan = ref(false);
+const showTip = ref(true);
+const showEnd = ref(true);
+const showRedEnvelope = ref(true)
+
+const token = storage.get('token') || '';
+// 邀请人数
 const people = ref(3);
-
-const list = ref([{
-	id: '001',
-	num: '189****8989',
-	time: '02/16 19:00'
-}, {
-	id: '002',
-	num: '189****8989',
-	time: '02/16 19:00'
-}, {
-	id: '003',
-	num: '189****8989',
-	time: '02/16 19:00'
-}, {
-	id: '004',
-	num: '189****8989',
-	time: '02/16 19:00'
-}, {
-	id: '005',
-	num: '189****8989',
-	time: '02/16 19:00'
-}, {
-	id: '006',
-	num: '189****8989',
-	time: '02/16 19:00'
-}, {
-	id: '007',
-	num: '189****8989',
-	time: '02/16 19:00'
-}])
-
+// 我的好友
+let list = sessionStorage.get('friendsList') || [];
+// logo
 const logoList = [{
 	id: '001',
 	icon: Wx,
@@ -72,7 +59,7 @@ const logoList = [{
 	name: 'bilibili',
 	hrefUrl: 'https://space.bilibili.com/3493138475780593?spm_id_from=333.337.0.0'
 }]
-
+// 规则内容
 const ruleList = [{
 	text: '活动时间:2024年2月5日11：00至2024年2月14日23：59'
 }, {
@@ -89,11 +76,46 @@ const ruleList = [{
 	text: '本次活动《剑与远征：启程》官方拥有活动最终解释权'
 }]
 
-
-const showPopup = () => {
-	show.value = true;
+// 打开登录窗口
+const showLoginPopup = () => {
+	showLogin.value = true;
 }
+// 关闭登录窗口
+const closeLoginPop = (val: boolean) => {
+	// 模拟接口取数据，暂时存在sessionStorage
+	list = sessionStorage.get('friendsList') || [];
 
+	showLogin.value = val;
+}
+// 打开扫码窗口
+const showScanPopup = () => {
+	showScan.value = true;
+}
+// 关闭扫码窗口
+const closeScanPop = (val: boolean) => {
+	showScan.value = val
+}
+// 关闭温馨提示窗口
+const closeTipPop = (val: boolean) => {
+	showTip.value = val
+}
+// 关闭温馨提示窗口
+const closeEndPop = (val: boolean) => {
+	showEnd.value = val
+}
+// 关闭获得红包的窗口
+const closeRedEnvelopePop = (val: boolean, sequenceCode: string) => {
+	showRedEnvelope.value = val;
+	console.log(sequenceCode)
+}
+// 立即邀请
+const inviteNow = () => {
+	if(!token) {
+		showLogin.value = true;
+	} else {
+		router.push('/share')
+	}
+}
 
 </script>
 
@@ -101,15 +123,19 @@ const showPopup = () => {
 	<div class="activity">
 		<div class="top">
 			<div class="header">
-				<img :src="Logo" alt="logo" class="logo">
-				<img :src="Login" alt="登录" @click="showPopup" class="login-btn">
+				<div class="logo">
+					<img :src="Logo" alt="logo">
+				</div>
+				<div class="login-btn">
+					<img :src="Login" alt="登录" @click="showLoginPopup">
+				</div>
 			</div>
 		</div>
 		<div class="main">
 			<div class="red-envelope-box">
-				<img :src="RedEnvelope" alt="红包" class="red-envelope">
+				<img :src="RedEnvelope" alt="红包" class="red-envelope" @click="showLoginPopup">
 			</div>
-			<div class="claim-now-box">
+			<div class="claim-now-box" @click="showLoginPopup">
 				<img :src="ClaimNow" alt="立即领取" class="claim-now-btn">
 			</div>
 			<div class="claim-text-box">
@@ -122,7 +148,11 @@ const showPopup = () => {
 						<div class="item-con">时间</div>
 					</li>
 					<li>
-						<ul class="list-con">
+						<div class="blank-con" v-if="list.length == 0">
+							<p>您还未成功邀请新玩家进行预约，</p>
+							<p>继续加油吧！</p>
+						</div>
+						<ul class="list-con" v-else>
 							<li v-for="item in list" :key="item.id" class="item">
 								<div class="item-con">{{ item.num }}</div>
 								<div class="item-con">{{ item.time }}</div>
@@ -130,7 +160,7 @@ const showPopup = () => {
 						</ul>
 					</li>
 				</ul>
-				<img :src="InviteNow" alt="立即邀请" class="invite-now-btn">
+				<img :src="InviteNow" alt="立即邀请" class="invite-now-btn" @click="inviteNow">
 				<div class="text">已邀请{{ people }}/3</div>
 			</div>
 			<div class="welfare-top-box">
@@ -140,9 +170,10 @@ const showPopup = () => {
 			<div class="welfare-bottom-box">
 				<ul class="logo-list">
 					<li v-for="item in logoList" :key="item.id" class="item">
-						<a :href="item.hrefUrl">
+						<a :href="item.hrefUrl" v-if="item.hrefUrl">
 							<img :src="item.icon" alt="logo" :class="item.name + '-icon'">
 						</a>
+						<img :src="item.icon" alt="" :class="item.name + '-icon'" v-else @click="showScanPopup">
 					</li>
 				</ul>
 			</div>
@@ -165,8 +196,24 @@ const showPopup = () => {
 		</div>
 		<Footer></Footer>
 		<!-- 登录弹窗 -->
-		<van-dialog v-model:show="show" :showConfirmButton="false">
-			<LoginDialog></LoginDialog>
+		<van-dialog width="67%" v-model:show="showLogin" :showConfirmButton="false">
+			<LoginDialog @closePop="closeLoginPop"></LoginDialog>
+		</van-dialog>
+		<!-- 扫码弹窗 -->
+		<van-dialog width="67%" v-model:show="showScan" :showConfirmButton="false">
+			<ScanDialog @closePop="closeScanPop"></ScanDialog>
+		</van-dialog>
+		<!-- 活动温馨提示 -->
+		<van-dialog width="67%" v-model:show="showTip" :showConfirmButton="false">
+			<TipDialog @closePop="closeTipPop"></TipDialog>
+		</van-dialog>
+		<!-- 活动结束 -->
+		<van-dialog width="67%" v-model:show="showEnd" :showConfirmButton="false">
+			<EndDialog @closePop="closeEndPop"></EndDialog>
+		</van-dialog>
+		<!-- 获得红包封面 -->
+		<van-dialog width="67%" v-model:show="showRedEnvelope" :showConfirmButton="false">
+			<RedEnvelopeDialog @closePop="closeRedEnvelopePop"></RedEnvelopeDialog>
 		</van-dialog>
 	</div>
 </template>

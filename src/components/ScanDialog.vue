@@ -31,7 +31,7 @@ const closePop=()=>{
 	width: 100%;
 	height: 7.5rem;
 	background: url('@/assets/img/dialog/dialog-bg2.png') no-repeat;
-	background-size: 100% 100%;
+	background-size: 100% auto;
 	position: relative;
 	.scan-box {
 		height: 100%;

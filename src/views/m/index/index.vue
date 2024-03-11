@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { sessionStorage } from '@/utils/storage';
+import { storage, sessionStorage } from '@/utils/storage';
+import {useRouter} from 'vue-router'
 import Footer from '@/components/Footer.vue';
 import LoginDialog from "@/components/LoginDialog.vue";
 import ScanDialog from '@/components/ScanDialog.vue';
@@ -23,12 +24,16 @@ import TipTitle from '@/assets/img/tip-title.png';
 import RuleTitle from '@/assets/img/rule-title.png';
 import "./index.scss";
 
+const router=useRouter()
+
 // 弹窗变量
 const showLogin = ref(false);
 const showScan = ref(false);
 const showTip = ref(true);
 const showEnd = ref(true);
 const showRedEnvelope = ref(true)
+
+const token = storage.get('token') || '';
 // 邀请人数
 const people = ref(3);
 // 我的好友
@@ -103,6 +108,14 @@ const closeRedEnvelopePop = (val: boolean, sequenceCode: string) => {
 	showRedEnvelope.value = val;
 	console.log(sequenceCode)
 }
+// 立即邀请
+const inviteNow = () => {
+	if(!token) {
+		showLogin.value = true;
+	} else {
+		router.push('/share')
+	}
+}
 
 </script>
 
@@ -110,8 +123,12 @@ const closeRedEnvelopePop = (val: boolean, sequenceCode: string) => {
 	<div class="activity">
 		<div class="top">
 			<div class="header">
-				<img :src="Logo" alt="logo" class="logo">
-				<img :src="Login" alt="登录" @click="showLoginPopup" class="login-btn">
+				<div class="logo">
+					<img :src="Logo" alt="logo">
+				</div>
+				<div class="login-btn">
+					<img :src="Login" alt="登录" @click="showLoginPopup">
+				</div>
 			</div>
 		</div>
 		<div class="main">
@@ -143,7 +160,7 @@ const closeRedEnvelopePop = (val: boolean, sequenceCode: string) => {
 						</ul>
 					</li>
 				</ul>
-				<img :src="InviteNow" alt="立即邀请" class="invite-now-btn" @click="showLoginPopup">
+				<img :src="InviteNow" alt="立即邀请" class="invite-now-btn" @click="inviteNow">
 				<div class="text">已邀请{{ people }}/3</div>
 			</div>
 			<div class="welfare-top-box">
@@ -179,23 +196,23 @@ const closeRedEnvelopePop = (val: boolean, sequenceCode: string) => {
 		</div>
 		<Footer></Footer>
 		<!-- 登录弹窗 -->
-		<van-dialog v-model:show="showLogin" :showConfirmButton="false">
+		<van-dialog width="67%" v-model:show="showLogin" :showConfirmButton="false">
 			<LoginDialog @closePop="closeLoginPop"></LoginDialog>
 		</van-dialog>
 		<!-- 扫码弹窗 -->
-		<van-dialog v-model:show="showScan" :showConfirmButton="false">
+		<van-dialog width="67%" v-model:show="showScan" :showConfirmButton="false">
 			<ScanDialog @closePop="closeScanPop"></ScanDialog>
 		</van-dialog>
 		<!-- 活动温馨提示 -->
-		<van-dialog v-model:show="showTip" :showConfirmButton="false">
+		<van-dialog width="67%" v-model:show="showTip" :showConfirmButton="false">
 			<TipDialog @closePop="closeTipPop"></TipDialog>
 		</van-dialog>
 		<!-- 活动结束 -->
-		<van-dialog v-model:show="showEnd" :showConfirmButton="false">
+		<van-dialog width="67%" v-model:show="showEnd" :showConfirmButton="false">
 			<EndDialog @closePop="closeEndPop"></EndDialog>
 		</van-dialog>
 		<!-- 获得红包封面 -->
-		<van-dialog v-model:show="showRedEnvelope" :showConfirmButton="false">
+		<van-dialog width="67%" v-model:show="showRedEnvelope" :showConfirmButton="false">
 			<RedEnvelopeDialog @closePop="closeRedEnvelopePop"></RedEnvelopeDialog>
 		</van-dialog>
 	</div>

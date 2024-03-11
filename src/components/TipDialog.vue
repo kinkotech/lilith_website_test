@@ -40,15 +40,15 @@ const closePop=()=>{
 
 .tip {
 	width: 100%;
-	height: 7.5rem;
-	padding: 1.4rem .2rem;
+	height: 6.3rem;
+	padding: 1.2rem .2rem;
 	background: url('@/assets/img/dialog/dialog-bg.png') no-repeat;
-	background-size: 100% 100%;
+	background-size: 100% auto;
 	position: relative;
 	.tip-header {
 		width: 100%;
 		position: absolute;
-		top: -2.8rem;
+		top: -2.3rem;
 
 		.tip-top {
 			display: flex;
@@ -56,11 +56,11 @@ const closePop=()=>{
 			align-items: center;
 
 			.top-icon {
-				width: 4rem;
+				width: 3rem;
 			}
 
 			.text-icon {
-				width: 5rem;
+				width: 4rem;
 				margin-top: .15rem;
 			}
 		}
@@ -75,7 +75,7 @@ const closePop=()=>{
 			}
 
 			.text-icon {
-				width: 3.2rem;
+				width: 2.5rem;
 				margin: .1rem .2rem;
 			}
 		}
@@ -119,7 +119,7 @@ const closePop=()=>{
 				flex-direction: column;
 				align-items: center;
 				position: absolute;
-				bottom: -4.5rem;
+				bottom: -3.7rem;
 
 				.button {
 					width: 4.5rem;

@@ -39,7 +39,7 @@ const closePop=()=>{
 
 .red-envelope {
 	width: 100%;
-	height: 14rem;
+	height: 11rem;
 	background: url('@/assets/img/dialog/dialog-bg3.png') no-repeat;
 	background-size: 100% auto;
 	position: relative;
@@ -49,18 +49,14 @@ const closePop=()=>{
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-top: .3rem;
 		.title {
 			width: 2rem;
-			margin-top: -.3rem;
 		}
 		.sub-title {
 			width: 3rem;
-			margin-top: -.1rem;
 		}
 		.img {
-			width: 4.5rem;
-			margin-top: .3rem;
+			width: 3.2rem;
 		}
 		.sequence-code-box {
 			display: flex;

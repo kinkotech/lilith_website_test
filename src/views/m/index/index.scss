@@ -1,6 +1,7 @@
 #app {
 	display: flex;
 	flex-direction: column;
+	font-family: Noto Sans SC;
 }
 .activity {
 	width: 10rem;
@@ -18,13 +19,13 @@
 		.header {
 			display: flex;
 			justify-content: space-between;
+			margin: .34rem;
 			.logo {
 				width: 2rem;
-				margin-left: .427rem;
 			}
 	
 			.login-btn {
-				width: 3.8rem;
+				width: 2rem;
 			}
 		}
 		
@@ -285,7 +286,7 @@
 
 			p {
 				width: 70%;
-				margin-top: .6rem;
+				margin-top: .5rem;
 				font-weight: 500;
 				line-height: .53rem;
 				/* 160% */

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, defineEmits } from 'vue';
 import { showToast } from 'vant';
-import { sessionStorage } from '@/utils/storage';
+import { storage, sessionStorage } from '@/utils/storage';
 import 'vant/es/toast/style';
 
 const checked = ref(false);
@@ -70,7 +70,8 @@ const onSubmit = (values: any) => {
 			num: '189****8989',
 			time: '02/16 19:00'
 		}]
-		sessionStorage.set('friendsList', list)
+		sessionStorage.set('friendsList', list);
+		storage.set('token', 'token-test')
 		emit('closePop', false)
 		showToast('登录成功');
 	}
@@ -149,7 +150,7 @@ const onSubmit = (values: any) => {
 .login {
 	width: 100%;
 	height: 7.5rem;
-	padding: 1.4rem .2rem;
+	padding: 1.45rem .2rem;
 	background: url('@/assets/img/dialog/dialog-bg.png') no-repeat;
 	background-size: 100% 100%;
 	position: relative;
@@ -162,7 +163,7 @@ const onSubmit = (values: any) => {
 	.login-header {
 		width: 100%;
 		position: absolute;
-		top: -3.5rem;
+		top: -2.8rem;
 
 		.login-top {
 			display: flex;
@@ -170,11 +171,11 @@ const onSubmit = (values: any) => {
 			align-items: center;
 
 			.top-icon {
-				width: 4rem;
+				width: 3rem;
 			}
 
 			.text-icon {
-				width: 5rem;
+				width: 4rem;
 				margin-top: .15rem;
 			}
 		}
@@ -185,11 +186,11 @@ const onSubmit = (values: any) => {
 			align-items: center;
 
 			.icon {
-				width: 2rem;
+				width: 1.5rem;
 			}
 
 			.text-icon {
-				width: 3.2rem;
+				width: 2.5rem;
 				margin: .1rem .2rem;
 			}
 		}
@@ -270,9 +271,6 @@ const onSubmit = (values: any) => {
 				font-size: .26rem;
 				font-style: normal;
 				font-weight: 500;
-				/* 200% */
-				letter-spacing: 2px;
-
 				a {
 					display: inline-block;
 					line-height: .2rem;

@@ -32,7 +32,8 @@ const showTip = ref(false);
 const showEnd = ref(false);
 const showRedEnvelope = ref(false)
 
-let isInvitation = ref(route.query.isInvitation); // 通过地址参数判断，是否是被邀请人
+// 正常情况下我们默认query中的参数都是string类型。
+let isInvitation = ref(route.query.isInvitation as string); // 通过地址参数判断，是否是被邀请人
 
 const token = storage.get('token') || '';
 // 邀请人数

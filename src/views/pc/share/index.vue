@@ -61,7 +61,7 @@ wx.ready(function () {
         desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...', 
         link: fxUrl,
         imgUrl: fxImgUrl,
-        type: '',
+        type: 'link',
         dataUrl: '', 
         success: function () {
             showToast("分享成功");

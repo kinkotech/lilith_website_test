@@ -24,6 +24,7 @@
     "pinia": "2.1.7",
     "postcss-px-to-viewport": "1.1.1",
     "sass": "1.70.0",
+    "sha1": "^1.1.1",
     "unocss": "0.58.5",
     "vant": "4.8.4",
     "vue": "3.4.15",

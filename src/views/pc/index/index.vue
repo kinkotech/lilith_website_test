@@ -223,7 +223,7 @@ const socialMedia = (name: string) => {
 				<div class="title-img">
 					<img :src="Title" alt="">
 				</div>
-				<div class="qcode-img">
+				<div class="qcode-img" @click="showScanPopup">
 					<img :src="Qcode" alt="二维码">
 				</div>
 				<div class="welfare-bottom-box">
@@ -302,23 +302,23 @@ const socialMedia = (name: string) => {
 		</div>
 		
 		<!-- 登录弹窗 -->
-		<van-dialog :width="255" v-model:show="showLogin" :showConfirmButton="false">
+		<van-dialog v-model:show="showLogin" :showConfirmButton="false">
 			<LoginDialog @closePop="closeLoginPop"></LoginDialog>
 		</van-dialog>
 		<!-- 扫码弹窗 -->
-		<van-dialog :width="255" v-model:show="showScan" :showConfirmButton="false">
+		<van-dialog v-model:show="showScan" :showConfirmButton="false">
 			<ScanDialog @closePop="closeScanPop"></ScanDialog>
 		</van-dialog>
 		<!-- 活动温馨提示 -->
-		<van-dialog :width="255" v-model:show="showTip" :showConfirmButton="false">
+		<van-dialog v-model:show="showTip" :showConfirmButton="false">
 			<TipDialog @closePop="closeTipPop"></TipDialog>
 		</van-dialog>
 		<!-- 活动结束 -->
-		<van-dialog :width="255" v-model:show="showEnd" :showConfirmButton="false">
+		<van-dialog v-model:show="showEnd" :showConfirmButton="false">
 			<EndDialog @closePop="closeEndPop"></EndDialog>
 		</van-dialog>
 		<!-- 获得红包封面 -->
-		<van-dialog :width="255" v-model:show="showRedEnvelope" :showConfirmButton="false">
+		<van-dialog v-model:show="showRedEnvelope" :showConfirmButton="false">
 			<RedEnvelopeDialog @closePop="closeRedEnvelopePop"></RedEnvelopeDialog>
 		</van-dialog>
 	</div>

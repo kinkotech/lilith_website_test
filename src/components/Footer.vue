@@ -52,18 +52,19 @@ const list = [{
 
 <style lang="scss" scoped>
 .footer {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	color: #fff;
 	font-size: .14rem;
 	background: url('@/assets/img/footer-bg.png') no-repeat;
-	background-size: 100% auto;
+	background-size: 100% 100%;
 	background-position: 0 0;
-	padding-bottom: .2rem;
+	padding-bottom: .4rem;
 	.logo {
 		width: 33%;
-		margin: 1.9rem auto;
+		margin: 2.5rem auto;
 		margin-bottom: 0;
 	}
 	.footer-container {
@@ -71,6 +72,7 @@ const list = [{
 		flex-direction: column;
 		font-size: .266667rem;
 		color: grey;
+		margin-top: .3rem;
 		p {
 			margin: 0.08rem auto;
 			.icon {
@@ -83,7 +85,8 @@ const list = [{
 				display: flex;
 				.item {
 					width: 1.546667rem;
-    			height: 0.613333rem;
+    				height: 0.613333rem;
+					text-align: center;
 					&:last-child {
 						margin-left: .1rem;
 					}

@@ -28,11 +28,12 @@ const closePop=()=>{
 @import '@/styles/variables.scss';
 
 .scan {
-	width: 100%;
+	width: 6.8rem;
 	height: 7.5rem;
 	background: url('@/assets/img/dialog/dialog-bg2.png') no-repeat;
 	background-size: 100% auto;
 	position: relative;
+	margin: auto;
 	.scan-box {
 		height: 100%;
 		display: flex;

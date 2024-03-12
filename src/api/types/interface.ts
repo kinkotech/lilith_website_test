@@ -21,3 +21,14 @@ export interface ModelTaskRequestData {
     // 游戏ID，用于指定所属游戏的唯一标识符
     game_id: number;
 }
+/**
+ * 登录
+ */
+export interface Login {
+    // 手机号
+    number: number;
+    // 验证码
+    code: number;
+    // 邀请码
+    invitationCode: string;
+}

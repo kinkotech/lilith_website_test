@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import { storage, sessionStorage } from '@/utils/storage';
-import {useRouter} from 'vue-router'
+import {useRouter} from 'vue-router';
 import Footer from '@/components/Footer.vue';
 import LoginDialog from "@/components/LoginDialog.vue";
 import ScanDialog from '@/components/ScanDialog.vue';
@@ -31,14 +31,18 @@ const showLogin = ref(false);
 const showScan = ref(false);
 const showTip = ref(false);
 const showEnd = ref(false);
-const showRedEnvelope = ref(false)
+const showRedEnvelope = ref(false);
+
+const nick = ref('微信昵称');
 
 // 正常情况下我们默认query中的参数都是string类型。
 let isInvitation = ref(route.query.isInvitation as string); // 通过地址参数判断，是否是被邀请人
 
-const token = storage.get('token') || '';
-// 邀请人数
-let list = sessionStorage.get('friendsList') || [];
+const state = reactive({
+	token: storage.get('token') || '',
+	list: sessionStorage.get('friendsList') || [] // 邀请人数
+})
+
 // logo
 const logoList = [{
 	id: '001',
@@ -87,9 +91,10 @@ const showLoginPopup = () => {
 	});
 }
 // 关闭登录窗口
-const closeLoginPop = (val: boolean) => {
+const closeLoginPop = (val: boolean, token: string, list: string[]) => {
 	// 模拟接口取数据，暂时存在sessionStorage
-	list = sessionStorage.get('friendsList') || [];
+	state.token = token
+	state.list = list;
 
 	showLogin.value = val;
 }
@@ -116,7 +121,7 @@ const closeRedEnvelopePop = (val: boolean, sequenceCode: string) => {
 }
 // 立即邀请
 const inviteNow = () => {
-	if(!token) {
+	if(!state.token) {
 		showLogin.value = true;
 	} else {
 		router.push('/share')
@@ -165,7 +170,7 @@ const claimNow = () => {
 		event_category: 'click',
 		event_label: 'claim_cdkey'
 	});
-	if(!token) {
+	if(!state.token) {
 		showLoginPopup()
 	} else {
 		showRedEnvelope.value = true;
@@ -181,12 +186,15 @@ const claimNow = () => {
 				<div class="logo">
 					<img :src="Logo" alt="logo">
 				</div>
-				<div class="login-btn" @click="showLoginPopup" v-if="!token">
+				<div class="login-btn" @click="showLoginPopup" v-if="!state.token">
 					<img :src="Login" alt="登录">
 					
 				</div>
-				<div class="user-img" v-else>
-					<img :src="User" alt="登录">
+				<div class="user-box" v-else>
+					<div class="user-img">
+						<img :src="User" alt="登录">
+					</div>
+					<div class="nick-name">{{ nick }}</div>
 				</div>
 			</div>
 			<div class="top-title-left">
@@ -222,12 +230,12 @@ const claimNow = () => {
 						<div class="item-con">时间</div>
 					</li>
 					<li>
-						<div class="blank-con" v-if="list.length == 0">
+						<div class="blank-con" v-if="state.list.length == 0">
 							<p>您还未成功邀请新玩家进行预约，</p>
 							<p>继续加油吧！</p>
 						</div>
 						<ul class="list-con" v-else>
-							<li v-for="item in list" :key="item.id" class="item">
+							<li v-for="item in state.list" :key="item.id" class="item">
 								<div class="item-con">{{ item.num }}</div>
 								<div class="item-con">{{ item.time }}</div>
 							</li>
@@ -235,7 +243,7 @@ const claimNow = () => {
 					</li>
 				</ul>
 				<img :src="InviteNow" alt="立即邀请" class="invite-now-btn" @click="inviteNow">
-				<div class="text">已邀请{{ list.length }}/3</div>
+				<div class="text">已邀请{{ state.list.length }}/3</div>
 			</div>
 			<div class="welfare-top-box">
 				<div class="title-img">

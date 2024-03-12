@@ -41,7 +41,7 @@ const list = [{
 				<a href="https://www.lilith.com/termofservice" class="item">服务条款</a>
 				<a href="https://www.lilith.com/privacy"class="item">隐私协议</a>
 			</p>
-			<p>©莉莉丝游戏版权所有</p>
+			<p><span class="mr1">©</span>莉莉丝游戏版权所有</p>
 			<p class="flx">
 				<a href="http://www.shjbzx.cn/" class="item"><img :src="Jubao" alt=""></a>
 				<a href="https://www.12377.cn/" class="item"><img :src="Youhai" alt=""></a>
@@ -52,6 +52,7 @@ const list = [{
 
 <style lang="scss" scoped>
 .footer {
+	margin-top: -0.5rem;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -73,6 +74,7 @@ const list = [{
 		font-size: .266667rem;
 		color: grey;
 		margin-top: .3rem;
+		padding-bottom: .4rem;
 		p {
 			margin: 0.08rem auto;
 			.icon {
@@ -93,6 +95,9 @@ const list = [{
 				}
 			}
 		}
+	}
+	.mr1 {
+		margin-right: .1rem;
 	}
 }
 </style>

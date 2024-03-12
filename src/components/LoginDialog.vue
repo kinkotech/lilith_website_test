@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
+import { ref, defineEmits, defineProps } from 'vue';
 import { showToast } from 'vant';
 import { storage, sessionStorage } from '@/utils/storage';
 import 'vant/es/toast/style';
@@ -10,6 +10,14 @@ const code = ref('');
 const invitationCode = ref('usahdgsauxcgh');
 const count = ref(60);
 const counting = ref(false);
+
+const props = defineProps({
+	// 是否是被邀请人
+	isInvitation: {
+		type: String,
+		default: 'false'
+	}
+})
 
 const emit = defineEmits(['closePop']);
 // 关闭弹窗
@@ -34,12 +42,18 @@ const sendVerificationCode = () => {
 
 // 登录
 const onSubmit = (values: any) => {
+	const phoneReg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+
 	if (values.number == '') {
 		showToast('请输入手机号');
+	} else if (!phoneReg.test(values.number) && values.number.length != 11) {
+		showToast('手机号格式错误');
 	} else if (values.code == '') {
 		showToast('请输入验证码');
+	} else if (values.code.length !== 6) {
+		showToast('验证码错误');
 	} else if (!values.radio) {
-		showToast('请先勾选隐私协议和服务条款');
+		showToast('请先勾选服务条款和隐私协议');
 	} else {
 		const list = [{
 			id: '001',
@@ -75,6 +89,17 @@ const onSubmit = (values: any) => {
 		emit('closePop', false)
 		showToast('登录成功');
 	}
+	// 测试toast，正式开发需按照接口异常结果返回对应toast内容
+	setTimeout(() => {
+		showToast('系统繁忙，请稍后重试');
+	}, 1000)
+	setTimeout(() => {
+		showToast('操作频繁，请稍后重试');
+	}, 2000)
+	setTimeout(() => {
+		showToast('请重新发送验证码');
+	}, 3000)
+
 	console.log('submit', values);
 	//跟踪事件的的埋点
 	(window as any).gtag('event', 'cta_click', {
@@ -115,7 +140,7 @@ const onSubmit = (values: any) => {
 			<van-form @submit="onSubmit">
 				<van-cell-group inset>
 					<van-field v-model="username" type="tel" name="number" placeholder="输入您的手机号" maxlength="11" />
-					<van-field v-model="code" name="code" center clearable placeholder="输入验证码" maxlength="4">
+					<van-field v-model="code" name="code" center clearable placeholder="输入验证码" maxlength="6">
 						<template #button>
 							<div class="send-code-icon" v-if="!counting">
 								<img src="@/assets/img/dialog/code-button.png" alt="发送验证码"
@@ -126,7 +151,7 @@ const onSubmit = (values: any) => {
 							</div>
 						</template>
 					</van-field>
-					<van-field name="invitationCode" v-model="invitationCode">
+					<van-field name="invitationCode" v-model="invitationCode" v-if="props.isInvitation === 'true'">
 						<template #input>
 							<div class="invitation-code-box">
 								<div class="icon">
@@ -140,7 +165,7 @@ const onSubmit = (values: any) => {
 						<template #input>
 							<van-checkbox v-model="checked">
 								<template #icon="props">
-									<div class="inactive"><span class="active" v-if="props.checked"></span></div>
+									<div :class="props.checked ? 'active' : 'inactive'"></div>
 								</template>
 								<span>我已阅读理解并同意</span>
 								<span class="line"><a href="https://www.lilith.com/privacy">隐私协议</a></span>
@@ -267,23 +292,18 @@ const onSubmit = (values: any) => {
 				align-items: center;
 			}
 
-			.inactive {
-				display: flex;
-				align-items: center;
-				justify-content: center;
+			.inactive,.active {
 				width: .3rem;
 				height: .3rem;
-				border-radius: 50%;
-				border: 1.5px solid $theme-color;
-				background: $dialog-background-color;
+			}
+			.inactive {
+				background: url('@/assets/img/radio.png') no-repeat;
+				background-size: 100% 100%;
 			}
 
 			.active {
-				display: inline-block;
-				width: .12rem;
-				height: .12rem;
-				border-radius: 50%;
-				background: $theme-color;
+				background: url('@/assets/img/radio-select.png') no-repeat;
+				background-size: 100% 100%;
 			}
 
 			::v-deep .van-checkbox__label span,

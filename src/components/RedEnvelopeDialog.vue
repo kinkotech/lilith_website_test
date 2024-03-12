@@ -82,7 +82,6 @@ const closePop=()=>{
 			align-items: center;
 			color: #A63A20;
 			font-weight: 400;
-			margin-top: -.15rem;
 			.sequence-code-img {
 				width: 1.1rem;
 			}

@@ -19,8 +19,6 @@ import Wx from '@/assets/img/wx.png'
 import Dy from '@/assets/img/dy.png';
 import Tap from '@/assets/img/tap.png';
 import Bilibili from '@/assets/img/bilibili.png';
-import UseTitle from '@/assets/img/use-title.png';
-import TipTitle from '@/assets/img/tip-title.png';
 import RuleTitle from '@/assets/img/rule-title.png';
 import "./index.scss";
 
@@ -130,9 +128,18 @@ const inviteNow = () => {
 					<img :src="Login" alt="登录" @click="showLoginPopup">
 				</div>
 			</div>
+			<div class="top-title">
+				<img src="@/assets/img/top-title.png" alt="">
+			</div>
+			<div class="top-sub-title">
+				<img src="@/assets/img/top-sub-title.png" alt="">
+			</div>
 		</div>
 		<div class="main">
 			<div class="red-envelope-box">
+				<div class="fireworks">
+					<img src="@/assets/img/fireworks.png" alt="">
+				</div>
 				<img :src="RedEnvelope" alt="红包" class="red-envelope" @click="showLoginPopup">
 			</div>
 			<div class="claim-now-box" @click="showLoginPopup">
@@ -164,30 +171,77 @@ const inviteNow = () => {
 				<div class="text">已邀请{{ people }}/3</div>
 			</div>
 			<div class="welfare-top-box">
-				<img :src="Title" alt="" class="title-img">
-				<img :src="Qcode" alt="二维码" class="qcode-img">
-			</div>
-			<div class="welfare-bottom-box">
-				<ul class="logo-list">
-					<li v-for="item in logoList" :key="item.id" class="item">
-						<a :href="item.hrefUrl" v-if="item.hrefUrl">
-							<img :src="item.icon" alt="logo" :class="item.name + '-icon'">
-						</a>
-						<img :src="item.icon" alt="" :class="item.name + '-icon'" v-else @click="showScanPopup">
-					</li>
-				</ul>
+				<div class="title-img">
+					<img :src="Title" alt="">
+				</div>
+				<div class="qcode-img">
+					<img :src="Qcode" alt="二维码">
+				</div>
+				<div class="welfare-bottom-box">
+					<ul class="logo-list">
+						<li v-for="item in logoList" :key="item.id" class="item">
+							<a :href="item.hrefUrl" v-if="item.hrefUrl">
+								<img :src="item.icon" alt="logo" :class="item.name + '-icon'">
+							</a>
+							<img :src="item.icon" alt="" :class="item.name + '-icon'" v-else @click="showScanPopup">
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div class="use-title-box">
-				<img :src="UseTitle" alt="" class="title-img">
-			</div>
-			<div class="use-text-box">
-				<p>用户领取封面后，在手机微信中打开发红包界面前往“红包封面”-“选择封面”即可使用。</p>
+				<div class="fireworks">
+					<img src="@/assets/img/fireworks_02.png" alt="">
+				</div>
+				<div class="star">
+					<img src="@/assets/img/star.png" alt="">
+				</div>
+				<div class="title-top">
+					<img src="@/assets/img/dialog/dialog-top.png" alt="">
+				</div>
+				<div class="title">
+					<div class="icon">
+						<img src="@/assets/img/dialog/dialog-left.png" alt="">
+					</div>
+					<div class="text-icon">
+						<img src="@/assets/img/use-title.png" alt="">
+					</div>
+					<div class="icon">
+						<img src="@/assets/img/dialog/dialog-right.png" alt="">
+					</div>
+				</div>
+				<div class="text-box">
+					<p>用户领取封面后，在手机微信中打开发红包界面前往“红包封面”-“选择封面”即可使用。</p>
+				</div>
 			</div>
 			<div class="tips-box">
-				<img :src="TipTitle" alt="" class="title-img">
+				<div class="money">
+					<img src="@/assets/img/money.png" alt="">
+				</div>
+				<div class="fireworks">
+					<img src="@/assets/img/fireworks_03.png" alt="">
+				</div>
+				<div class="title-top">
+					<img src="@/assets/img/dialog/dialog-top.png" alt="">
+				</div>
+				<div class="title">
+					<div class="icon">
+						<img src="@/assets/img/dialog/dialog-left.png" alt="">
+					</div>
+					<div class="text-icon">
+						<img src="@/assets/img/tip-title.png" alt="">
+					</div>
+					<div class="icon">
+						<img src="@/assets/img/dialog/dialog-right.png" alt="">
+					</div>
+				</div>
+				<div class="text-box">
+					<p>用户成功领取封面后，可在3个月内无限次使用。超过3个月后，已领取的封面将自动失效，无法再次使用。已发送的红包展示不会收到影响。</p>
+				</div>
 			</div>
 			<div class="rule-box">
-				<p class="tip-text">用户成功领取封面后，可在3个月内无限次使用。超过3个月后，已领取的封面将自动失效，无法再次使用。已发送的红包展示不会收到影响。</p>
+				<div class="fireworks">
+					<img src="@/assets/img/fireworks_04.png" alt="">
+				</div>
 				<div class="title-img">
 					<img :src="RuleTitle" alt="">
 				</div>
@@ -195,8 +249,9 @@ const inviteNow = () => {
 					<li v-for="item in ruleList" :key="item.text" class="item">{{ item.text }}</li>
 				</ul>
 			</div>
+			<Footer></Footer>
 		</div>
-		<Footer></Footer>
+		
 		<!-- 登录弹窗 -->
 		<van-dialog width="67%" v-model:show="showLogin" :showConfirmButton="false">
 			<LoginDialog @closePop="closeLoginPop"></LoginDialog>

@@ -9,7 +9,7 @@ const MShareComponent = () => import("@/views/m/share/index.vue");
 const routes = [
   {
     path: "/",
-    // component: isMobile() ? MComponent : PCComponent,
+    // component: isMobile() ? MIndexComponent : PCComponent,
     component: MIndexComponent
   },
   {

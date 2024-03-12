@@ -26,7 +26,6 @@ const list = [{
 
 <template>
     <div class="footer">
-		<img src="@/assets/img/bg_12.jpg" alt="">
         <div class="logo">
 			<img :src="LilisiLogo" alt="logo">
 		</div>
@@ -53,13 +52,11 @@ const list = [{
 
 <style lang="scss" scoped>
 .footer {
-	padding-bottom: 1rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	color: #fff;
 	font-size: .14rem;
-	background: #1F1F1F;
 	.logo {
 		width: 33%;
 	}

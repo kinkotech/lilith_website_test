@@ -253,23 +253,23 @@ const inviteNow = () => {
 		</div>
 		
 		<!-- 登录弹窗 -->
-		<van-dialog width="67%" v-model:show="showLogin" :showConfirmButton="false">
+		<van-dialog :width="510" v-model:show="showLogin" :showConfirmButton="false">
 			<LoginDialog @closePop="closeLoginPop"></LoginDialog>
 		</van-dialog>
 		<!-- 扫码弹窗 -->
-		<van-dialog width="67%" v-model:show="showScan" :showConfirmButton="false">
+		<van-dialog width="510" v-model:show="showScan" :showConfirmButton="false">
 			<ScanDialog @closePop="closeScanPop"></ScanDialog>
 		</van-dialog>
 		<!-- 活动温馨提示 -->
-		<van-dialog width="67%" v-model:show="showTip" :showConfirmButton="false">
+		<van-dialog width="510" v-model:show="showTip" :showConfirmButton="false">
 			<TipDialog @closePop="closeTipPop"></TipDialog>
 		</van-dialog>
 		<!-- 活动结束 -->
-		<van-dialog width="67%" v-model:show="showEnd" :showConfirmButton="false">
+		<van-dialog width="510" v-model:show="showEnd" :showConfirmButton="false">
 			<EndDialog @closePop="closeEndPop"></EndDialog>
 		</van-dialog>
 		<!-- 获得红包封面 -->
-		<van-dialog width="67%" v-model:show="showRedEnvelope" :showConfirmButton="false">
+		<van-dialog width="510" v-model:show="showRedEnvelope" :showConfirmButton="false">
 			<RedEnvelopeDialog @closePop="closeRedEnvelopePop"></RedEnvelopeDialog>
 		</van-dialog>
 	</div>

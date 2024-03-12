@@ -26,7 +26,7 @@ const list = [{
 
 <template>
     <div class="footer">
-        <div class="logo">
+		<div class="logo">
 			<img :src="LilisiLogo" alt="logo">
 		</div>
 		<div class="footer-container">
@@ -57,8 +57,14 @@ const list = [{
 	align-items: center;
 	color: #fff;
 	font-size: .14rem;
+	background: url('@/assets/img/footer-bg.png') no-repeat;
+	background-size: 100% auto;
+	background-position: 0 0;
+	padding-bottom: .2rem;
 	.logo {
 		width: 33%;
+		margin: 1.6rem auto;
+		margin-bottom: 0;
 	}
 	.footer-container {
 		display: flex;

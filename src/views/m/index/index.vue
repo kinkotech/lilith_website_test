@@ -26,10 +26,10 @@ const router=useRouter()
 
 // 弹窗变量
 const showLogin = ref(false);
-const showScan = ref(false);
-const showTip = ref(false);
-const showEnd = ref(false);
-const showRedEnvelope = ref(false)
+const showScan = ref(true);
+const showTip = ref(true);
+const showEnd = ref(true);
+const showRedEnvelope = ref(true)
 
 const token = storage.get('token') || '';
 // 邀请人数
@@ -75,8 +75,21 @@ const ruleList = [{
 }]
 
 // 打开登录窗口
-const showLoginPopup = () => {
+const showLoginPopup = (val: string) => {
 	showLogin.value = true;
+	if(val == '登录') {
+		//跟踪事件的的埋点
+		(window as any).gtag('event', 'cta_click', {
+			event_category: 'click',
+			event_label: 'login'
+		});
+	} else if(val == '立即领取') {
+		//跟踪事件的的埋点
+		(window as any).gtag('event', 'cta_click', {
+			event_category: 'click',
+			event_label: 'claim_cdkey'
+		});
+	}
 }
 // 关闭登录窗口
 const closeLoginPop = (val: boolean) => {
@@ -113,6 +126,42 @@ const inviteNow = () => {
 	} else {
 		router.push('/share')
 	}
+	//跟踪事件的的埋点
+	(window as any).gtag('event', 'cta_click', {
+		event_category: 'click',
+		event_label: 'invite_friends'
+	});
+}
+
+//跟踪页面的埋点	
+(window as any).gtag('event', 'page_view', {
+    page_path: 'p_' + document.title,
+    page_title: 'p_' + document.title
+});
+
+const socialMedia = (name: string) => {
+	if (name == 'bilibili') {
+		(window as any).gtag('event', 'cta_click', {
+			event_category: 'click',
+			event_label: 'share_bilibili'
+		});
+	} else if (name == 'wx') {
+		(window as any).gtag('event', 'cta_click', {
+			event_category: 'click',
+			event_label: 'share_wechat'
+		});
+	} else if (name == 'tap') {
+		(window as any).gtag('event', 'cta_click', {
+			event_category: 'click',
+			event_label: 'share_taptap'
+		});
+	} else if (name == 'dy') {
+		(window as any).gtag('event', 'cta_click', {
+			event_category: 'click',
+			event_label: 'share_douyin'
+		});
+	}
+	
 }
 
 </script>
@@ -125,7 +174,7 @@ const inviteNow = () => {
 					<img :src="Logo" alt="logo">
 				</div>
 				<div class="login-btn">
-					<img :src="Login" alt="登录" @click="showLoginPopup">
+					<img :src="Login" alt="登录" @click="showLoginPopup('登录')">
 				</div>
 			</div>
 			<div class="top-title">
@@ -140,9 +189,9 @@ const inviteNow = () => {
 				<div class="fireworks">
 					<img src="@/assets/img/fireworks.png" alt="">
 				</div>
-				<img :src="RedEnvelope" alt="红包" class="red-envelope" @click="showLoginPopup">
+				<img :src="RedEnvelope" alt="红包" class="red-envelope" @click="showLoginPopup('')">
 			</div>
-			<div class="claim-now-box" @click="showLoginPopup">
+			<div class="claim-now-box" @click="showLoginPopup('立即领取')">
 				<img :src="ClaimNow" alt="立即领取" class="claim-now-btn">
 			</div>
 			<div class="claim-text-box">
@@ -179,7 +228,7 @@ const inviteNow = () => {
 				</div>
 				<div class="welfare-bottom-box">
 					<ul class="logo-list">
-						<li v-for="item in logoList" :key="item.id" class="item">
+						<li v-for="item in logoList" :key="item.id" class="item" @click="socialMedia(item.name)">
 							<a :href="item.hrefUrl" v-if="item.hrefUrl">
 								<img :src="item.icon" alt="logo" :class="item.name + '-icon'">
 							</a>

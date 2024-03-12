@@ -13,6 +13,10 @@ clipboard.on('success', (e) => {
     console.log('已复制到剪贴板！');
     showToast('序列码已复制');
     e.clearSelection(); // 清除选中文本
+	(window as any).gtag('event', 'cta_click', {
+		event_category: 'click',
+		event_label: 'duplicate_cdkey'
+	});
 });
 
 clipboard.on('error', () => {

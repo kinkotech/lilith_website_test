@@ -76,6 +76,11 @@ const onSubmit = (values: any) => {
 		showToast('登录成功');
 	}
 	console.log('submit', values);
+	//跟踪事件的的埋点
+	(window as any).gtag('event', 'cta_click', {
+		event_category: 'click',
+		event_label: 'mobile_auth'
+	});
 };
 
 </script>

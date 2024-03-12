@@ -63,7 +63,7 @@ const list = [{
 	padding-bottom: .2rem;
 	.logo {
 		width: 33%;
-		margin: 1.6rem auto;
+		margin: 1.9rem auto;
 		margin-bottom: 0;
 	}
 	.footer-container {

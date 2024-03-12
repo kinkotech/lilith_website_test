@@ -11,6 +11,11 @@ clipboard.on('success', (e) => {
     console.log('已复制到剪贴板！');
     showToast('复制成功');
     e.clearSelection(); // 清除选中文本
+    //跟踪事件的的埋点
+	(window as any).gtag('event', 'cta_click', {
+		event_category: 'click',
+		event_label: 'duplicate_share'
+	});
 });
 
 clipboard.on('error', () => {

@@ -23,12 +23,13 @@ const closePop=()=>{
 @import '@/styles/variables.scss';
 
 .end {
-	width: 100%;
-	height: 6.3rem;
+	width: 6.8rem;
+	height: 6.4rem;
 	padding: 1.2rem .2rem;
 	background: url('@/assets/img/dialog/dialog-bg.png') no-repeat;
 	background-size: 100% auto;
 	position: relative;
+	margin: auto;
 	.end-box {
 		width: 100%;
 		height: 100%;

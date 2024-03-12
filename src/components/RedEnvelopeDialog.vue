@@ -13,6 +13,10 @@ clipboard.on('success', (e) => {
     console.log('已复制到剪贴板！');
     showToast('序列码已复制');
     e.clearSelection(); // 清除选中文本
+	(window as any).gtag('event', 'cta_click', {
+		event_category: 'click',
+		event_label: 'duplicate_cdkey'
+	});
 });
 
 clipboard.on('error', () => {
@@ -51,11 +55,12 @@ const closePop=()=>{
 @import '@/styles/variables.scss';
 
 .red-envelope {
-	width: 100%;
+	width: 6.8rem;
 	height: 11rem;
 	background: url('@/assets/img/dialog/dialog-bg3.png') no-repeat;
 	background-size: 100% auto;
 	position: relative;
+	margin: auto;
 	.red-envelope-box {
 		height: 100%;
 		display: flex;
@@ -67,7 +72,6 @@ const closePop=()=>{
 		}
 		.sub-title {
 			width: 3rem;
-			margin-top: -.15rem;
 		}
 		.img {
 			width: 3.4rem;

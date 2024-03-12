@@ -76,6 +76,11 @@ const onSubmit = (values: any) => {
 		showToast('登录成功');
 	}
 	console.log('submit', values);
+	//跟踪事件的的埋点
+	(window as any).gtag('event', 'cta_click', {
+		event_category: 'click',
+		event_label: 'mobile_auth'
+	});
 };
 
 </script>
@@ -158,12 +163,13 @@ const onSubmit = (values: any) => {
 @import '@/styles/variables.scss';
 
 .login {
-	width: 100%;
-	height: 6.3rem;
+	width: 6.8rem;
+	height: 6.4rem;
 	padding: 1.2rem .2rem;
 	background: url('@/assets/img/dialog/dialog-bg.png') no-repeat;
 	background-size: 100% auto;
 	position: relative;
+	margin: auto;
 	.close {
 		position: absolute;
 		right: 0;
@@ -190,7 +196,7 @@ const onSubmit = (values: any) => {
 		}
 
 		.login-title {
-			margin-top: -.19rem;
+			margin-top: -.1rem;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -217,7 +223,7 @@ const onSubmit = (values: any) => {
 			height: .72rem;
 			line-height: .72rem;
 			color: #A63A20;
-			border: 2.5px solid #E5AF6B;
+			border: 1.5px solid #E5AF6B;
 			border-radius: .1rem;
 			font-weight: 500;
 			background: #fff;
@@ -268,14 +274,14 @@ const onSubmit = (values: any) => {
 				width: .3rem;
 				height: .3rem;
 				border-radius: 50%;
-				border: 2px solid $theme-color;
+				border: 1.5px solid $theme-color;
 				background: $dialog-background-color;
 			}
 
 			.active {
 				display: inline-block;
-				width: .15rem;
-				height: .15rem;
+				width: .12rem;
+				height: .12rem;
 				border-radius: 50%;
 				background: $theme-color;
 			}
@@ -308,10 +314,10 @@ const onSubmit = (values: any) => {
 					flex: 1;
 					margin-left: .2rem;
 					height: .72rem;
-					line-height: .72rem;
+					padding: .05rem 0;
 					text-align: center;
 					background: #E5AF6B;
-					border: 2.5px solid #FFF;
+					border: 1.5px solid #FFF;
 					border-radius: .08rem;
 					color: $theme-color;
 					font-size: .33rem;
@@ -330,6 +336,7 @@ const onSubmit = (values: any) => {
 
 				.button {
 					width: 4.5rem;
+					height: 1.2rem;
 					background: url('@/assets/img/dialog/confirm-button.png') no-repeat;
 					background-size: 100% auto;
 					border: 0;

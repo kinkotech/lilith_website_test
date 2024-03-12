@@ -1,15 +1,28 @@
 <script setup lang="ts">
 import { defineEmits } from 'vue';
 import { showToast } from 'vant';
+import Clipboard from 'clipboard';
 import 'vant/es/toast/style';
 
 const emit = defineEmits(['closePop']);
-const sequenceCode = '12312312'; // 序列码
+
+const sequenceCode = '123123'; // 序列码
+const clipboard = new Clipboard('.button'); // .copy-btn为按钮元素的class名称或选择器
+
+clipboard.on('success', (e) => {
+    console.log('已复制到剪贴板！');
+    showToast('序列码已复制');
+    e.clearSelection(); // 清除选中文本
+});
+
+clipboard.on('error', () => {
+    console.warn('无法复制到剪贴板！');
+});
+
 // 关闭弹窗
 const closePop=()=>{
-	showToast('序列码已复制');
   //传递给父组件
-  emit('closePop', false, sequenceCode)
+  emit('closePop', false)
 }
 
 </script>
@@ -27,7 +40,7 @@ const closePop=()=>{
 			</div>
 			<van-form>
 				<div class="confirm-box">
-					<van-button class="button" @click="closePop"></van-button>
+					<van-button class="button" @click="closePop" :data-clipboard-text="sequenceCode"></van-button>
 				</div>
 			</van-form>
 		</div>
@@ -47,28 +60,32 @@ const closePop=()=>{
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
 		.title {
 			width: 2rem;
+			margin-top: 1.7rem;
 		}
 		.sub-title {
 			width: 3rem;
+			margin-top: -.15rem;
 		}
 		.img {
-			width: 3.2rem;
+			width: 3.4rem;
+			margin-top: .1rem;
 		}
 		.sequence-code-box {
 			display: flex;
 			align-items: center;
 			color: #A63A20;
 			font-weight: 400;
+			margin-top: -.15rem;
 			.sequence-code-img {
 				width: 1.1rem;
 			}
 			.sequence-code-text {
 				text-align: center;
-				font-size: .33rem;
+				font-size: .4rem;
+				font-weight: bolder;
 			}
 		}
 		.van-form {

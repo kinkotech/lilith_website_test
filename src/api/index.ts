@@ -1,5 +1,5 @@
 import axios from "@/utils/request";
-import { ModelTaskRequestData } from "./types/interface";
+import { ModelTaskRequestData, Login } from "./types/interface";
 
 export default {
     /**
@@ -8,4 +8,8 @@ export default {
      * @returns 
      */
     getModelTaskList: (params: ModelTaskRequestData) => axios.get('/api/aigc/model-task', { params }),
+    /**
+     * 登录mock
+     */
+    login: (params: Login ) => axios.get('/api/aigc/login', { params })
 }

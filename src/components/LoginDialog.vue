@@ -2,6 +2,7 @@
 import { ref, defineEmits, defineProps } from 'vue';
 import { showToast } from 'vant';
 import { storage, sessionStorage } from '@/utils/storage';
+import api from '@/api';
 import 'vant/es/toast/style';
 
 const checked = ref(false);
@@ -38,6 +39,18 @@ const sendVerificationCode = () => {
 			counting.value = false;
 		}
 	}, 1000)
+}
+// 调取登录接口
+const login = async (params: any) => {
+	await api.login(params).then((res: any) => {
+		console.log(res,'---')
+		// 测试toast，正式开发需按照接口异常结果返回对应toast内容
+		// showToast('系统繁忙，请稍后重试');
+		// showToast('操作频繁，请稍后重试');
+		// showToast('请重新发送验证码');
+		// emit('closePop', false)
+		// showToast('登录成功');
+	})
 }
 
 // 登录
@@ -86,19 +99,17 @@ const onSubmit = (values: any) => {
 		}]
 		sessionStorage.set('friendsList', list);
 		storage.set('token', 'token-test')
-		emit('closePop', false)
-		showToast('登录成功');
-	}
-	// 测试toast，正式开发需按照接口异常结果返回对应toast内容
-	setTimeout(() => {
+		login(values)
+		// 测试toast，正式开发需按照接口异常结果返回对应toast内容
 		showToast('系统繁忙，请稍后重试');
-	}, 1000)
-	setTimeout(() => {
 		showToast('操作频繁，请稍后重试');
-	}, 2000)
-	setTimeout(() => {
 		showToast('请重新发送验证码');
-	}, 3000)
+		
+		setTimeout(() => {
+			showToast('登录成功');
+			emit('closePop', false, 'token-test', list)
+		}, 1000)
+	}
 
 	console.log('submit', values);
 	//跟踪事件的的埋点
@@ -175,7 +186,7 @@ const onSubmit = (values: any) => {
 						</template>
 					</van-field>
 				</van-cell-group>
-				<div class="confirm-box">
+				<div :class="props.isInvitation == 'true' ? 'confirm-box bt3' : 'confirm-box bt4'">
 					<van-button round block type="primary" native-type="submit" class="button"></van-button>
 					<div class="text">绑定手机号登录即视为预约游戏</div>
 				</div>
@@ -199,6 +210,7 @@ const onSubmit = (values: any) => {
 		position: absolute;
 		right: 0;
 		top: 0;
+		z-index: 999;
 		width: .4rem;
 	}
 	.login-header {
@@ -242,6 +254,8 @@ const onSubmit = (values: any) => {
 		height: 100%;
 		padding-top: .23rem;
 		background: $dialog-background-color;
+		display: flex;
+		align-items: center;
 
 		::v-deep input {
 			padding: 0 .2rem;
@@ -352,7 +366,12 @@ const onSubmit = (values: any) => {
 				flex-direction: column;
 				align-items: center;
 				position: absolute;
-				bottom: -3.5rem;
+				&.bt3 {
+					bottom: -3.5rem;
+				}
+				&.bt4 {
+					bottom: -4rem;
+				}
 
 				.button {
 					width: 4.5rem;

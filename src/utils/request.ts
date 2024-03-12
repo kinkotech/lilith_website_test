@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
-import { Dialog, Toast } from 'vant'
+import { Dialog, showToast } from 'vant'
 // 根据环境不同引入不同api地址
 import { config } from '@/config'
 
@@ -39,7 +39,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 	async (response: AxiosResponse) => {
 		// await new Promise(resovle => setTimeout(resovle, 3000))
-		Toast.clear()
+		// showToast('')
 		const res = response.data
 		if (res.code !== 0) {
 			// token 过期

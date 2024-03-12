@@ -89,6 +89,7 @@ wx.ready(function () {
     width: 100%;
     height: 100%;
     background: $dialog-background-color;
+    font-family: 思源黑体(Source Han Sans);
     &-box {
         width: 100%;
         height: 100%;

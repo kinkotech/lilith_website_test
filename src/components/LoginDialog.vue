@@ -12,6 +12,37 @@ const invitationCode = ref('usahdgsauxcgh');
 const count = ref(60);
 const counting = ref(false);
 
+const token = storage.get('token')
+const list = [{
+	id: '001',
+	num: '189****8989',
+	time: '02/16 19:00'
+}, {
+	id: '002',
+	num: '189****8989',
+	time: '02/16 19:00'
+}, {
+	id: '003',
+	num: '189****8989',
+	time: '02/16 19:00'
+}, {
+	id: '004',
+	num: '189****8989',
+	time: '02/16 19:00'
+}, {
+	id: '005',
+	num: '189****8989',
+	time: '02/16 19:00'
+}, {
+	id: '006',
+	num: '189****8989',
+	time: '02/16 19:00'
+}, {
+	id: '007',
+	num: '189****8989',
+	time: '02/16 19:00'
+}]
+
 const props = defineProps({
 	// 是否是被邀请人
 	isInvitation: {
@@ -24,7 +55,7 @@ const emit = defineEmits(['closePop']);
 // 关闭弹窗
 const closePop=()=>{
   //传递给父组件
-  emit('closePop', false)
+  emit('closePop', false, token, list)
 }
 
 // 发送验证码
@@ -44,10 +75,11 @@ const sendVerificationCode = () => {
 const login = async (params: any) => {
 	await api.login(params).then((res: any) => {
 		console.log(res,'---')
-		// 测试toast，正式开发需按照接口异常结果返回对应toast内容
+		// 测试toast，正式开发需按照接口异常结果,根据错误码，返回对应toast内容
 		// showToast('系统繁忙，请稍后重试');
 		// showToast('操作频繁，请稍后重试');
 		// showToast('请重新发送验证码');
+		// showToast('验证码错误');
 		// emit('closePop', false)
 		// showToast('登录成功');
 	})
@@ -55,60 +87,41 @@ const login = async (params: any) => {
 
 // 登录
 const onSubmit = (values: any) => {
-	const phoneReg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+	// 手机号格式校验，根据需求可修改正则
+	const phoneReg = /^1(3|4|5|6|7|8|9)\d{9}$/;
+	console.log(!phoneReg.test(values.number),'99999')
 
 	if (values.number == '') {
 		showToast('请输入手机号');
-	} else if (!phoneReg.test(values.number) && values.number.length != 11) {
+	} else if (!phoneReg.test(values.number) || values.number.length != 11) {
 		showToast('手机号格式错误');
 	} else if (values.code == '') {
 		showToast('请输入验证码');
 	} else if (values.code.length !== 6) {
+		// 验证码长度非6位报该错误
 		showToast('验证码错误');
 	} else if (!values.radio) {
 		showToast('请先勾选服务条款和隐私协议');
 	} else {
-		const list = [{
-			id: '001',
-			num: '189****8989',
-			time: '02/16 19:00'
-		}, {
-			id: '002',
-			num: '189****8989',
-			time: '02/16 19:00'
-		}, {
-			id: '003',
-			num: '189****8989',
-			time: '02/16 19:00'
-		}, {
-			id: '004',
-			num: '189****8989',
-			time: '02/16 19:00'
-		}, {
-			id: '005',
-			num: '189****8989',
-			time: '02/16 19:00'
-		}, {
-			id: '006',
-			num: '189****8989',
-			time: '02/16 19:00'
-		}, {
-			id: '007',
-			num: '189****8989',
-			time: '02/16 19:00'
-		}]
+		
 		sessionStorage.set('friendsList', list);
 		storage.set('token', 'token-test')
 		login(values)
 		// 测试toast，正式开发需按照接口异常结果返回对应toast内容
-		showToast('系统繁忙，请稍后重试');
-		showToast('操作频繁，请稍后重试');
-		showToast('请重新发送验证码');
+		setTimeout(() => {
+			showToast('系统繁忙，请稍后重试');
+		},500)
+		setTimeout(() => {
+			showToast('操作频繁，请稍后重试');
+		},1000)
+		setTimeout(() => {
+			showToast('请重新发送验证码');
+		},1500)
 		
 		setTimeout(() => {
 			showToast('登录成功');
 			emit('closePop', false, 'token-test', list)
-		}, 1000)
+		}, 3000)
 	}
 
 	console.log('submit', values);

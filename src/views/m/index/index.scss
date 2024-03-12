@@ -35,10 +35,11 @@
 				align-items: center;
 				.user-img {
 					width: 1rem;
+					height: 1rem;
 				}
 				.nick-name {
 					margin-top: 1px;
-					font-size: .15rem;
+					font-size: .26rem;
 				}
 			}
 			
@@ -103,7 +104,7 @@
 			justify-content: center;
 			align-items: center;
 			.claim-now-btn {
-				width: 5.7rem;
+				width: 5rem;
 				padding: .3rem 0;
 				margin-left: .3rem;
 			}
@@ -184,7 +185,7 @@
 			}
 
 			.invite-now-btn {
-				width: 57.3%;
+				width: 50%;
 				margin-top: .4rem;
 			}
 
@@ -289,6 +290,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				text-align: justify;
 	
 				p {
 					width: 80%;

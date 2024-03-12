@@ -35,10 +35,11 @@
 				align-items: center;
 				.user-img {
 					width: 1rem;
+					height: 1rem;
 				}
 				.nick-name {
 					margin-top: 1px;
-					font-size: .15rem;
+					font-size: .26rem;
 				}
 			}
 			
@@ -103,7 +104,7 @@
 			justify-content: center;
 			align-items: center;
 			.claim-now-btn {
-				width: 5.7rem;
+				width: 5rem;
 				padding: .3rem 0;
 				margin-left: .3rem;
 			}
@@ -184,7 +185,7 @@
 			}
 
 			.invite-now-btn {
-				width: 57.3%;
+				width: 50%;
 				margin-top: .4rem;
 			}
 
@@ -225,13 +226,13 @@
 					width: 70%;
 					height: 2rem;
 					display: flex;
-					border-top: 2px solid rgba(179, 41, 0, .5);
-					border-bottom: 2px solid rgba(179, 41, 0, .5);
+					border-top: 1.2px solid rgba(179, 41, 0, .5);
+					border-bottom: 1.2px solid rgba(179, 41, 0, .5);
 	
 					.item {
 						flex: 1;
 						margin: .5rem 0;
-						border-right: 2px solid rgba(179, 41, 0, .5);
+						border-right: 1.2px solid rgba(179, 41, 0, .5);
 						display: flex;
 						align-items: center;
 						justify-content: center;
@@ -298,7 +299,8 @@
 					font-style: normal;
 					font-weight: 500;
 					line-height: .53rem;
-					letter-spacing: 2.5px;
+					letter-spacing: 1.5px;
+					text-align: justify;
 				}
 			}
 		}
@@ -350,7 +352,7 @@
 			font-family: "Source Han Sans CN";
 			font-size: .33rem;
 			font-style: normal;
-			letter-spacing: 2.5px;
+			letter-spacing: 1.5px;
 			position: relative;
 			.fireworks {
 				width: 2rem;
@@ -370,14 +372,14 @@
 
 			.title-img {
 				width: 22%;
-				margin: 2.4rem 0 .1rem 0;
+				margin: 2.5rem 0 .25rem 0;
 			}
 
 			.list {
-				width: 70%;
+				width: 64%;
 
 				.item {
-					margin-top: .2rem;
+					margin-top: .05rem;
 					font-weight: 400;
 					font-weight: 500;
 					word-break: break-all;

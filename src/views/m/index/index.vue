@@ -13,6 +13,7 @@ import Logo from '@/assets/img/logo.png';
 import User from '@/assets/img/user.png';
 import RedEnvelope from '@/assets/img/red-envelope.png';
 import ClaimNow from '@/assets/img/claim-now.png';
+import ClaimNowDisabled from '@/assets/img/claim-now-disabled.png';
 import InviteNow from '@/assets/img/invite-now.png';
 import Qcode from '@/assets/img/qcode.png';
 import Title from '@/assets/img/title.png';
@@ -97,6 +98,10 @@ const closeLoginPop = (val: boolean, token: string, list: string[]) => {
 	state.list = list;
 
 	showLogin.value = val;
+	// 添加弹窗进行测试，正式开发需删除
+	if (isInvitation.value == 'true') {
+		showTip.value = true;
+	}
 }
 // 打开扫码窗口
 const showScanPopup = () => {
@@ -124,7 +129,13 @@ const inviteNow = () => {
 	if(!state.token) {
 		showLogin.value = true;
 	} else {
-		router.push('/share')
+		// 添加活动结束弹窗的测试
+		if (isInvitation.value == 'true') {
+			showEnd.value = true
+		} else {
+			router.push('/share')
+		}
+		
 	}
 	//跟踪事件的的埋点
 	(window as any).gtag('event', 'cta_click', {
@@ -173,8 +184,16 @@ const claimNow = () => {
 	if(!state.token) {
 		showLoginPopup()
 	} else {
-		showRedEnvelope.value = true;
+		// 添加温馨提示弹窗的测试
+		if (isInvitation.value == 'true') {
+			showTip.value = true;
+		} else {
+			showRedEnvelope.value = true;
+		}
+		
 	}
+
+	
 }
 
 </script>
@@ -217,8 +236,11 @@ const claimNow = () => {
 				</div>
 				<img :src="RedEnvelope" alt="红包" class="red-envelope" @click="showLoginPopup">
 			</div>
-			<div class="claim-now-box" @click="claimNow">
-				<img :src="ClaimNow" alt="立即领取" class="claim-now-btn">
+			<div class="claim-now-box">
+				<!--  v-if="isInvitation == 'true'"仅用测试代码，正式开发需删除 -->
+				<img :src="ClaimNowDisabled" alt="立即领取" class="claim-now-btn" v-if="isInvitation == 'true' || state.list.length < 3">
+				<img :src="ClaimNow" alt="立即领取" class="claim-now-btn" @click="claimNow" v-if="isInvitation !== 'true' && state.list.length >= 3">
+				
 			</div>
 			<div class="claim-text-box">
 				<p>2024年2月5日11:00 - 2024年2月14日23:59</p>
@@ -328,23 +350,23 @@ const claimNow = () => {
 		</div>
 		
 		<!-- 登录弹窗 -->
-		<van-dialog v-model:show="showLogin" :showConfirmButton="false">
+		<van-dialog width="100%" v-model:show="showLogin" :showConfirmButton="false">
 			<LoginDialog @closePop="closeLoginPop" :isInvitation="isInvitation"></LoginDialog>
 		</van-dialog>
 		<!-- 扫码弹窗 -->
-		<van-dialog v-model:show="showScan" :showConfirmButton="false">
+		<van-dialog width="100%" v-model:show="showScan" :showConfirmButton="false">
 			<ScanDialog @closePop="closeScanPop"></ScanDialog>
 		</van-dialog>
 		<!-- 活动温馨提示 -->
-		<van-dialog v-model:show="showTip" :showConfirmButton="false">
+		<van-dialog width="100%" v-model:show="showTip" :showConfirmButton="false">
 			<TipDialog @closePop="closeTipPop"></TipDialog>
 		</van-dialog>
 		<!-- 活动结束 -->
-		<van-dialog v-model:show="showEnd" :showConfirmButton="false">
+		<van-dialog width="100%" v-model:show="showEnd" :showConfirmButton="false">
 			<EndDialog @closePop="closeEndPop"></EndDialog>
 		</van-dialog>
 		<!-- 获得红包封面 -->
-		<van-dialog v-model:show="showRedEnvelope" :showConfirmButton="false">
+		<van-dialog width="100%" v-model:show="showRedEnvelope" :showConfirmButton="false">
 			<RedEnvelopeDialog @closePop="closeRedEnvelopePop"></RedEnvelopeDialog>
 		</van-dialog>
 	</div>

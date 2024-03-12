@@ -10,6 +10,7 @@ import EndDialog from '@/components/EndDialog.vue';
 import RedEnvelopeDialog from '@/components/RedEnvelopeDialog.vue';
 import Login from '@/assets/img/login.png';
 import Logo from '@/assets/img/logo.png';
+import User from '@/assets/img/user.png';
 import RedEnvelope from '@/assets/img/red-envelope.png';
 import ClaimNow from '@/assets/img/claim-now.png';
 import InviteNow from '@/assets/img/invite-now.png';
@@ -180,8 +181,12 @@ const claimNow = () => {
 				<div class="logo">
 					<img :src="Logo" alt="logo">
 				</div>
-				<div class="login-btn">
-					<img :src="Login" alt="登录" @click="showLoginPopup">
+				<div class="login-btn" @click="showLoginPopup" v-if="!token">
+					<img :src="Login" alt="登录">
+					
+				</div>
+				<div class="user-img" v-else>
+					<img :src="User" alt="登录">
 				</div>
 			</div>
 			<div class="top-title-left">

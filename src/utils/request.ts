@@ -62,7 +62,7 @@ instance.interceptors.response.use(
 		}
 	},
 	(error: any) => {
-		Toast.clear()
+		// Toast.clear()
 		if (error && error.response) {
 			switch (error.response.status) {
 				case 400:

@@ -27,7 +27,7 @@ let appId = 'wxa039b9f506b604a7';
 let timestamp: any = '';
 let nonceStr = '';
 let signature = '';
-let fxUrl = 'https://lilith.kinkotec.cn';
+let fxUrl = 'https://lilith.kinkotec.cn/?isInvitation=true';
 let title = '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站';
 let fxImgUrl = 'https://test-lilith.kinkotec.cn/fx.png';
 wx.config({

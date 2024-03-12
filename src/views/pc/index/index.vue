@@ -22,19 +22,20 @@ import Bilibili from '@/assets/img/bilibili.png';
 import RuleTitle from '@/assets/img/rule-title.png';
 import "./index.scss";
 
-const router=useRouter()
+const router = useRouter();
+const route = router.currentRoute.value;
 
 // 弹窗变量
 const showLogin = ref(false);
-const showScan = ref(true);
-const showTip = ref(true);
-const showEnd = ref(true);
-const showRedEnvelope = ref(true)
+const showScan = ref(false);
+const showTip = ref(false);
+const showEnd = ref(false);
+const showRedEnvelope = ref(false)
+
+let isInvitation = ref(route.query.isInvitation); // 通过地址参数判断，是否是被邀请人
 
 const token = storage.get('token') || '';
 // 邀请人数
-const people = ref(3);
-// 我的好友
 let list = sessionStorage.get('friendsList') || [];
 // logo
 const logoList = [{
@@ -75,21 +76,13 @@ const ruleList = [{
 }]
 
 // 打开登录窗口
-const showLoginPopup = (val: string) => {
+const showLoginPopup = () => {
 	showLogin.value = true;
-	if(val == '登录') {
-		//跟踪事件的的埋点
-		(window as any).gtag('event', 'cta_click', {
-			event_category: 'click',
-			event_label: 'login'
-		});
-	} else if(val == '立即领取') {
-		//跟踪事件的的埋点
-		(window as any).gtag('event', 'cta_click', {
-			event_category: 'click',
-			event_label: 'claim_cdkey'
-		});
-	}
+	//跟踪事件的的埋点
+	(window as any).gtag('event', 'cta_click', {
+		event_category: 'click',
+		event_label: 'login'
+	});
 }
 // 关闭登录窗口
 const closeLoginPop = (val: boolean) => {
@@ -138,7 +131,7 @@ const inviteNow = () => {
     page_path: 'p_' + document.title,
     page_title: 'p_' + document.title
 });
-
+// 社媒
 const socialMedia = (name: string) => {
 	if (name == 'bilibili') {
 		(window as any).gtag('event', 'cta_click', {
@@ -163,6 +156,19 @@ const socialMedia = (name: string) => {
 	}
 	
 }
+// 立即领取
+const claimNow = () => {
+	//跟踪事件的的埋点
+	(window as any).gtag('event', 'cta_click', {
+		event_category: 'click',
+		event_label: 'claim_cdkey'
+	});
+	if(!token) {
+		showLoginPopup()
+	} else {
+		showRedEnvelope.value = true;
+	}
+}
 
 </script>
 
@@ -174,8 +180,14 @@ const socialMedia = (name: string) => {
 					<img :src="Logo" alt="logo">
 				</div>
 				<div class="login-btn">
-					<img :src="Login" alt="登录" @click="showLoginPopup('登录')">
+					<img :src="Login" alt="登录" @click="showLoginPopup">
 				</div>
+			</div>
+			<div class="top-title-left">
+				<img src="@/assets/img/top-title-left.png" alt="">
+			</div>
+			<div class="top-title-right">
+				<img src="@/assets/img/top-title-right.png" alt="">
 			</div>
 			<div class="top-title">
 				<img src="@/assets/img/top-title.png" alt="">
@@ -189,9 +201,9 @@ const socialMedia = (name: string) => {
 				<div class="fireworks">
 					<img src="@/assets/img/fireworks.png" alt="">
 				</div>
-				<img :src="RedEnvelope" alt="红包" class="red-envelope" @click="showLoginPopup('')">
+				<img :src="RedEnvelope" alt="红包" class="red-envelope" @click="showLoginPopup">
 			</div>
-			<div class="claim-now-box" @click="showLoginPopup('立即领取')">
+			<div class="claim-now-box" @click="claimNow">
 				<img :src="ClaimNow" alt="立即领取" class="claim-now-btn">
 			</div>
 			<div class="claim-text-box">
@@ -217,7 +229,7 @@ const socialMedia = (name: string) => {
 					</li>
 				</ul>
 				<img :src="InviteNow" alt="立即邀请" class="invite-now-btn" @click="inviteNow">
-				<div class="text">已邀请{{ people }}/3</div>
+				<div class="text">已邀请{{ list.length }}/3</div>
 			</div>
 			<div class="welfare-top-box">
 				<div class="title-img">
@@ -303,7 +315,7 @@ const socialMedia = (name: string) => {
 		
 		<!-- 登录弹窗 -->
 		<van-dialog v-model:show="showLogin" :showConfirmButton="false">
-			<LoginDialog @closePop="closeLoginPop"></LoginDialog>
+			<LoginDialog @closePop="closeLoginPop" :isInvitation="isInvitation"></LoginDialog>
 		</van-dialog>
 		<!-- 扫码弹窗 -->
 		<van-dialog v-model:show="showScan" :showConfirmButton="false">

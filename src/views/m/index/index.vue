@@ -22,7 +22,8 @@ import Bilibili from '@/assets/img/bilibili.png';
 import RuleTitle from '@/assets/img/rule-title.png';
 import "./index.scss";
 
-const router=useRouter()
+const router = useRouter();
+const route = router.currentRoute.value;
 
 // 弹窗变量
 const showLogin = ref(false);
@@ -30,6 +31,8 @@ const showScan = ref(false);
 const showTip = ref(false);
 const showEnd = ref(false);
 const showRedEnvelope = ref(false)
+
+let isInvitation = ref(route.query.isInvitation); // 通过地址参数判断，是否是被邀请人
 
 const token = storage.get('token') || '';
 // 邀请人数
@@ -312,7 +315,7 @@ const claimNow = () => {
 		
 		<!-- 登录弹窗 -->
 		<van-dialog v-model:show="showLogin" :showConfirmButton="false">
-			<LoginDialog @closePop="closeLoginPop"></LoginDialog>
+			<LoginDialog @closePop="closeLoginPop" :isInvitation="isInvitation"></LoginDialog>
 		</van-dialog>
 		<!-- 扫码弹窗 -->
 		<van-dialog v-model:show="showScan" :showConfirmButton="false">

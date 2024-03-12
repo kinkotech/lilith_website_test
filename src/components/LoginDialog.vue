@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
+import { ref, defineEmits, defineProps } from 'vue';
 import { showToast } from 'vant';
 import { storage, sessionStorage } from '@/utils/storage';
 import 'vant/es/toast/style';
@@ -10,6 +10,14 @@ const code = ref('');
 const invitationCode = ref('usahdgsauxcgh');
 const count = ref(60);
 const counting = ref(false);
+
+const props = defineProps({
+	// 是否是被邀请人
+	isInvitation: {
+		type: String,
+		default: 'false'
+	}
+})
 
 const emit = defineEmits(['closePop']);
 // 关闭弹窗
@@ -143,7 +151,7 @@ const onSubmit = (values: any) => {
 							</div>
 						</template>
 					</van-field>
-					<van-field name="invitationCode" v-model="invitationCode">
+					<van-field name="invitationCode" v-model="invitationCode" v-if="props.isInvitation === 'true'">
 						<template #input>
 							<div class="invitation-code-box">
 								<div class="icon">

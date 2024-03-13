@@ -20,7 +20,7 @@ const state = reactive({
     signature: '',
 	text: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站https://test-lilith.kinkotec.cn/?isInvitation=true',
 	desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...',
-    shareUrl: location.href,
+    shareUrl: 'https://test-lilith.kinkotec.cn/share',
     title: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站',
     shareImgUrl: 'https://test-lilith.kinkotec.cn/share.png'
 })

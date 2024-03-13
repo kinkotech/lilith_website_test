@@ -20,27 +20,27 @@ const list = [{
 }, {
 	id: '002',
 	num: '139****8989',
-	time: '02/10 18:00'
+	time: '02/13 18:00'
 }, {
 	id: '003',
 	num: '159****8979',
-	time: '01/16 15:00'
+	time: '02/12 15:00'
 }, {
 	id: '004',
 	num: '152****8899',
-	time: '02/01 10:00'
+	time: '02/11 10:00'
 }, {
 	id: '005',
 	num: '186****1245',
-	time: '08/16 11:00'
+	time: '02/10 11:00'
 }, {
 	id: '006',
 	num: '189****8949',
-	time: '02/20 08:00'
+	time: '02/09 08:00'
 }, {
 	id: '007',
 	num: '183****8990',
-	time: '03/16 14:00'
+	time: '02/08 14:00'
 }]
 
 const props = defineProps({
@@ -110,18 +110,18 @@ const onSubmit = (values: any) => {
 		// 测试toast，正式开发需按照接口异常结果返回对应toast内容
 		setTimeout(() => {
 			showToast('系统繁忙，请稍后重试');
-		},500)
-		setTimeout(() => {
-			showToast('操作频繁，请稍后重试');
 		},1000)
 		setTimeout(() => {
+			showToast('操作频繁，请稍后重试');
+		},2000)
+		setTimeout(() => {
 			showToast('请重新发送验证码');
-		},1500)
+		},3000)
 		
 		setTimeout(() => {
 			showToast('登录成功');
 			emit('closePop', false, 'token-test', list)
-		}, 3000)
+		}, 4000)
 	}
 
 	console.log('submit', values);

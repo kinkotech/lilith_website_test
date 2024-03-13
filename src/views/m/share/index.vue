@@ -47,14 +47,14 @@ const share = (params: any) => {
         nonceStr,   // 必填，生成签名的随机串
         signature, // 必填，签名，见附录1
         jsApiList: [
-        'onMenuShareTimeline',
-        'onMenuShareAppMessage'
+        'updateTimelineShareData',
+        'updateAppMessageShareData'
         ]
     })
 
     wx.ready(function () {
-        //分享到朋友圈
-        wx.onMenuShareTimeline({
+        // “分享到朋友圈”及“分享到QQ空间”
+        wx.updateTimelineShareData({
             title,   // 分享时的标题
             link: fxUrl,     // 分享时的链接
             imgUrl: fxImgUrl,    // 分享时的图标
@@ -65,14 +65,12 @@ const share = (params: any) => {
                 showToast("取消分享");
             }
         });
-        //分享给朋友
-        wx.onMenuShareAppMessage({
+        // “分享给朋友”及“分享到QQ”
+        wx.updateAppMessageShareData({
             title,
             desc, 
             link: fxUrl,
             imgUrl: fxImgUrl,
-            type: 'link',
-            dataUrl: '', 
             success: function () {
                 showToast("分享成功");
             },

@@ -5,6 +5,13 @@ import Clipboard from 'clipboard';
 import { showToast } from 'vant';
 import 'vant/es/toast/style';
 import api from '@/api';
+import {useRouter} from 'vue-router';
+
+const router = useRouter();
+const route = router.currentRoute.value;
+
+// 正常情况下我们默认query中的参数都是string类型。
+let isInvitation = ref(route.query.isInvitation as string); // 通过地址参数判断，是否是被邀请人
 
 const state = reactive({
     appId: '',
@@ -19,6 +26,11 @@ const state = reactive({
 })
 
 const clipboard = new Clipboard('.copy-btn'); // .copy-btn为按钮元素的class名称或选择器
+
+// 重定向到活动页面
+if (isInvitation.value == 'true') {
+    router.push('/')
+}
 
 clipboard.on('success', (e) => {
     console.log('已复制到剪贴板！');
@@ -86,7 +98,7 @@ const getShareParam = async () => {
     let params = {
         // url: encodeURIComponent(location.origin + '/?isInvitation=true')
         // url: location.origin + '/?isInvitation=true'
-        url: location.href
+        url: location.href + '/?isInvitation=true'
     }
     await api.getShare(params).then(res => {
         console.log('getShare', res)

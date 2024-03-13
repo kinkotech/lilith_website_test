@@ -68,26 +68,26 @@ const share = (params: any) => {
         // “分享到朋友圈”及“分享到QQ空间”
         wx.updateTimelineShareData({
             title,   // 分享时的标题
-            link: fxUrl,     // 分享时的链接
-            imgUrl: fxImgUrl,    // 分享时的图标
+            link: location.href + '?isInvitation=true',     // 分享时的链接
+            imgUrl: 'https://test-lilith.kinkotec.cn/share.png',    // 分享时的图标
             success: function () {
-                showToast("分享成功");
+                console.log("分享成功");
             },
             cancel: function () {
-                showToast("取消分享");
+                console.log("取消分享");
             }
         });
         // “分享给朋友”及“分享到QQ”
         wx.updateAppMessageShareData({
             title,
-            desc, 
-            link: fxUrl,
-            imgUrl: fxImgUrl,
+            desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...', 
+            link: location.href + '?isInvitation=true',
+            imgUrl: 'https://test-lilith.kinkotec.cn/share.png',
             success: function () {
-                showToast("分享成功");
+                console.log("分享成功");
             },
             cancel: function () {
-                showToast("取消分享");
+                console.log("取消分享");
             }
         });
     })

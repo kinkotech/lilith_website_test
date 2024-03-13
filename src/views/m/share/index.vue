@@ -36,7 +36,7 @@ clipboard.on('error', () => {
 });
 
 // 分享
-const share = (params) => {
+const share = (params: any) => {
     let { appId, timestamp, nonceStr, signature, title, fxUrl, fxImgUrl, desc } = params;
     console.log(params)
     wx.config({

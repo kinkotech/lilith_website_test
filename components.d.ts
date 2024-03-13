@@ -7,7 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    copy: typeof import('./src/components/ScanDialog copy.vue')['default']
     EndDialog: typeof import('./src/components/EndDialog.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
@@ -28,7 +27,5 @@ declare module 'vue' {
     VanDialog: typeof import('vant/es')['Dialog']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
-    VanImage: typeof import('vant/es')['Image']
-    VanToast: typeof import('vant/es')['Toast']
   }
 }

@@ -67,6 +67,9 @@ devDependencies:
   '@types/node':
     specifier: 20.11.10
     version: 20.11.10
+  '@types/sha1':
+    specifier: ^1.1.5
+    version: registry.npmmirror.com/@types/sha1@1.1.5
   '@vitejs/plugin-vue':
     specifier: 5.0.3
     version: 5.0.3(vite@5.0.11)(vue@3.4.15)
@@ -4794,6 +4797,22 @@ packages:
     requiresBuild: true
     optional: true
 
+  registry.npmmirror.com/@types/node@20.11.10:
+    resolution: {integrity: sha512-rZEfe/hJSGYmdfX9tvcPMYeYPW2sNl50nsw4jZmRcaG0HIAb0WYEpsB05GOb53vjqpyE9GUhlDQ4jLSoB5q9kg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-20.11.10.tgz}
+    name: '@types/node'
+    version: 20.11.10
+    dependencies:
+      undici-types: registry.npmmirror.com/undici-types@5.26.5
+    dev: true
+
+  registry.npmmirror.com/@types/sha1@1.1.5:
+    resolution: {integrity: sha512-eE1PzjW7u2VfxI+bTsvjzjBfpwqvxSpgfUmnRNVY+PJU1NBsdGZlaO/qnVnPKHzzpgIl9YyBIxvrgBvt1mzt2A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/sha1/-/sha1-1.1.5.tgz}
+    name: '@types/sha1'
+    version: 1.1.5
+    dependencies:
+      '@types/node': registry.npmmirror.com/@types/node@20.11.10
+    dev: true
+
   registry.npmmirror.com/ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ansi-regex/-/ansi-regex-5.0.1.tgz}
     name: ansi-regex
@@ -4923,6 +4942,12 @@ packages:
     name: tiny-emitter
     version: 2.1.0
     dev: false
+
+  registry.npmmirror.com/undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/undici-types/-/undici-types-5.26.5.tgz}
+    name: undici-types
+    version: 5.26.5
+    dev: true
 
   registry.npmmirror.com/weixin-js-sdk@1.6.5:
     resolution: {integrity: sha512-Gph1WAWB2YN/lMOFB/ymb+hbU/wYazzJgu6PMMktCy9cSCeW5wA6Zwt0dpahJbJ+RJEwtTv2x9iIu0U4enuVSQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/weixin-js-sdk/-/weixin-js-sdk-1.6.5.tgz}

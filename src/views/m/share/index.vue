@@ -85,7 +85,8 @@ const share = (params: any) => {
 const getShareParam = async () => {
     let params = {
         // url: encodeURIComponent(location.origin + '/?isInvitation=true')
-        url: location.origin + '/?isInvitation=true'
+        // url: location.origin + '/?isInvitation=true'
+        url: location.href
     }
     await api.getShare(params).then(res => {
         console.log('getShare', res)

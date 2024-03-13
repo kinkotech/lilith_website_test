@@ -13,11 +13,7 @@ export default {
      */
     login: (params: Login ) => axios.get('/api/aigc/login', { params }),
     /**
-     * 获取access_token（有效期7200秒，开发者必须在自己的服务全局缓存access_token）
+     * 获取APP_ID,nonceStr,timestamp,signature
      */
-    getWxAccessToken: (params: any ) => axios.get('https://api.weixin.qq.com/cgi-bin/token', { params }),
-    /**
-     * 获得jsapi_ticket
-     */
-    getWxJsapiTicket: (params: any ) => axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket', { params }),
+    getShare: () => axios.get('https://wechatauth.kinkotec.cn/share/')
 }

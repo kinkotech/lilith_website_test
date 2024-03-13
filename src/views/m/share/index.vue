@@ -1,84 +1,9 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
 import wx from 'weixin-js-sdk';
 import Clipboard from 'clipboard';
 import { showToast } from 'vant';
 import 'vant/es/toast/style';
 import api from '@/api';
-import sha1 from "sha1";
-// import wxShare from './share.js';
-
-// //分享文案
-// const shareData = {
-//     title: "分享标题",
-// 	link: "分享链接",
-// 	imgUrl: "分享小图",
-// 	desc: "分享说明"
-// }
-// //微信分享
-// wxShare(shareData)
-
-const state = reactive({
-	ACCESS_TOKEN: '',
-    jsapi_ticket: ''
-})
-
-
-// 第一步 获取ACCESS_TOKEN
-const getWxAccessToken = async () => {
-    let params = {
-        grant_type: 'client_credential',
-        appid: 'wxa039b9f506b604a7',
-        secret: 'a654965dc956533da7e0514c46a90e99'
-    }
-    await api.getWxAccessToken(params).then((res) => {
-        // {"access_token":"ACCESS_TOKEN","expires_in":7200}
-        console.log('getWxAccessToken', res)
-        state.ACCESS_TOKEN = res.ACCESS_TOKEN;
-    })
-}
-// 第二步 获取jsapi_ticket
-const getWxJsapiTicket = async () => {
-    let params = {
-        access_token: state.ACCESS_TOKEN,
-        type: 'jsapi'
-    }
-    await api.getWxJsapiTicket(params).then((res) => {
-        // {
-        //     "errcode":0,
-        //     "errmsg":"ok",
-        //     "ticket":"bxLdikRXVbTPdHSM05e5u5sUoXNKd8-41ZO3MhKoyN5OfkWITDGgnr2fwJ0m9E8NYzWKVZvdVtaUgWvsdshFKA",
-        //     "expires_in":7200
-        // }
-        console.log('getWxJsapiTicket', res)
-        state.jsapi_ticket = res.ticket;
-    })
-}
-
-const wxSign = (data: any) => {
-    var urlN = window.location.href.split('#')[0]
-    var timestampn = new Date().getTime().toString()
-    var timestamp = timestampn.substring(0, 10) //生成签名的时间戳
-    var nonceStr = Math.random().toString(36).substr(2) //生成签名的随机串
-    var con = `jsapi_ticket=${data.ticket}&noncestr=${nonceStr}&timestamp=${timestamp}&url=${urlN}`
-    var signature = sha1(con) //签名
-    //签名处理后参数
-    return {
-        appId: 'wxa039b9f506b604a7',
-        timestamp: timestamp,
-        nonceStr: nonceStr,
-        signature: signature
-    }
-}
-
-await getWxAccessToken();
-await getWxJsapiTicket();
-
-let config = wxSign({ ticket: state.jsapi_ticket})
-
-console.log('config', config)
-
-
 
 
 const text = '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站https://test-lilith.kinkotec.cn/'

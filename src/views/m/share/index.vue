@@ -20,7 +20,7 @@ const state = reactive({
     signature: '',
 	text: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站https://test-lilith.kinkotec.cn/?isInvitation=true',
 	desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...',
-    fxUrl: location.href + '/?isInvitation=true',
+    fxUrl: location.href + '?isInvitation=true',
     title: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站',
     fxImgUrl: 'https://test-lilith.kinkotec.cn/share.png'
 })
@@ -98,7 +98,7 @@ const getShareParam = async () => {
     let params = {
         // url: encodeURIComponent(location.origin + '/?isInvitation=true')
         // url: location.origin + '/?isInvitation=true'
-        url: location.href + '/?isInvitation=true'
+        url: location.href + '?isInvitation=true'
     }
     await api.getShare(params).then(res => {
         console.log('getShare', res)
@@ -126,9 +126,13 @@ getShareParam()
 
 <style lang="scss" scoped>
 @import '@/styles/variables.scss';
-.share {
+#app {
     width: 100%;
+}
+.share {
+    width: 10rem;
     height: 100%;
+    // margin: 0 auto;
     background: $dialog-background-color;
     font-family: 思源黑体(Source Han Sans);
     &-box {

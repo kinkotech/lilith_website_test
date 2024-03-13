@@ -32,3 +32,10 @@ export interface Login {
     // 邀请码
     invitationCode: string;
 }
+/**
+ * 分享
+ */
+export interface GetShare {
+    // 页面url
+    url: string
+}

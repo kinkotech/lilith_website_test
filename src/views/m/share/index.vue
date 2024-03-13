@@ -39,6 +39,7 @@ clipboard.on('error', () => {
 const share = (params: any) => {
     let { appId, timestamp, nonceStr, signature, title, fxUrl, fxImgUrl, desc } = params;
     console.log('params', params)
+
     wx.config({
         debug: true,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId,        // 必填，公众号的唯一标识，填自己的！
@@ -84,7 +85,10 @@ const share = (params: any) => {
 
 // 分享接口
 const getShareParam = async () => {
-    await api.getShare().then(res => {
+    let params = {
+        url: encodeURIComponent(location.href)
+    }
+    await api.getShare(params).then(res => {
         console.log('getShare', res)
         state.appId = res.APP_ID;
         state.timestamp = res.timestamp;

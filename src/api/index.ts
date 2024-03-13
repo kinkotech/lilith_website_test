@@ -1,5 +1,5 @@
 import axios from "@/utils/request";
-import { ModelTaskRequestData, Login } from "./types/interface";
+import { ModelTaskRequestData, Login, GetShare } from "./types/interface";
 
 export default {
     /**
@@ -15,5 +15,5 @@ export default {
     /**
      * 获取APP_ID,nonceStr,timestamp,signature
      */
-    getShare: () => axios.get('https://wechatauth.kinkotec.cn/share/')
+    getShare: (params: GetShare) => axios.get('https://wechatauth.kinkotec.cn/share/', { params })
 }

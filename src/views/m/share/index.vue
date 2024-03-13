@@ -20,9 +20,9 @@ const state = reactive({
     signature: '',
 	text: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站https://test-lilith.kinkotec.cn/?isInvitation=true',
 	desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...',
-    fxUrl: location.href + '?isInvitation=true',
+    shareUrl: location.href + '?isInvitation=true',
     title: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站',
-    fxImgUrl: 'https://test-lilith.kinkotec.cn/share.png'
+    shareImgUrl: 'https://test-lilith.kinkotec.cn/share.png'
 })
 
 const clipboard = new Clipboard('.copy-btn'); // .copy-btn为按钮元素的class名称或选择器
@@ -49,8 +49,7 @@ clipboard.on('error', () => {
 
 // 分享
 const share = (params: any) => {
-    let { appId, timestamp, nonceStr, signature, title, fxUrl, fxImgUrl, desc } = params;
-    console.log('params', params)
+    let { appId, timestamp, nonceStr, signature, title, shareUrl, shareImgUrl, desc } = params;
 
     wx.config({
         debug: false,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -68,8 +67,8 @@ const share = (params: any) => {
         // “分享到朋友圈”及“分享到QQ空间”
         wx.updateTimelineShareData({
             title,   // 分享时的标题
-            link: location.href + '?isInvitation=true',     // 分享时的链接
-            imgUrl: 'https://test-lilith.kinkotec.cn/share.png',    // 分享时的图标
+            link: shareUrl,     // 分享时的链接
+            imgUrl: shareImgUrl,    // 分享时的图标
             success: function () {
                 console.log("分享成功");
             },
@@ -80,9 +79,9 @@ const share = (params: any) => {
         // “分享给朋友”及“分享到QQ”
         wx.updateAppMessageShareData({
             title,
-            desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...', 
-            link: location.href + '?isInvitation=true',
-            imgUrl: 'https://test-lilith.kinkotec.cn/share.png',
+            desc, 
+            link: shareUrl,
+            imgUrl: shareImgUrl,
             success: function () {
                 console.log("分享成功");
             },
@@ -96,8 +95,6 @@ const share = (params: any) => {
 // 分享接口
 const getShareParam = async () => {
     let params = {
-        // url: encodeURIComponent(location.origin + '/?isInvitation=true')
-        // url: location.origin + '/?isInvitation=true'
         url: location.href + '?isInvitation=true'
     }
     await api.getShare(params).then(res => {

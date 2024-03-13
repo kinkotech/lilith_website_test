@@ -84,7 +84,7 @@ const share = (params: any) => {
 // 分享接口
 const getShareParam = async () => {
     let params = {
-        url: encodeURIComponent(location.href)
+        url: encodeURIComponent(location.origin)
     }
     await api.getShare(params).then(res => {
         console.log('getShare', res)

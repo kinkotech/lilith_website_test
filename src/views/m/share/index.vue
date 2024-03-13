@@ -33,7 +33,7 @@ const getWxAccessToken = async () => {
     }
     await api.getWxAccessToken(params).then((res) => {
         // {"access_token":"ACCESS_TOKEN","expires_in":7200}
-        console.log(res)
+        console.log('getWxAccessToken', res)
         state.ACCESS_TOKEN = res.ACCESS_TOKEN;
     })
 }
@@ -50,7 +50,7 @@ const getWxJsapiTicket = async () => {
         //     "ticket":"bxLdikRXVbTPdHSM05e5u5sUoXNKd8-41ZO3MhKoyN5OfkWITDGgnr2fwJ0m9E8NYzWKVZvdVtaUgWvsdshFKA",
         //     "expires_in":7200
         // }
-        console.log(res)
+        console.log('getWxJsapiTicket', res)
         state.jsapi_ticket = res.ticket;
     })
 }
@@ -76,7 +76,7 @@ await getWxJsapiTicket();
 
 let config = wxSign({ ticket: state.jsapi_ticket})
 
-console.log(config)
+console.log('config', config)
 
 
 

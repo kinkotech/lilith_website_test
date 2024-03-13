@@ -67,7 +67,7 @@ const logoList = [{
 }]
 // 规则内容
 const ruleList = [{
-	text: '1.活动时间:2024年2月5日11：00至2024年2月14日23：59'
+	text: '1.活动时间:2024年2月5日11:00至2024年2月14日23:59'
 }, {
 	text: '2.活动期间内，每成功邀请1位新玩家预约公测，即可获得1次助力。成功邀请3位新玩家预约公测后，即可领取新年限定红包封面（已预约的玩家不计入）'
 }, {
@@ -252,7 +252,7 @@ const claimNow = () => {
 						<div class="item-con">时间</div>
 					</li>
 					<li>
-						<div class="blank-con" v-if="state.list.length == 0">
+						<div class="blank-con" v-if="state.list.length == 0 || isInvitation == 'true'">
 							<p>您还未成功邀请新玩家进行预约，</p>
 							<p>继续加油吧！</p>
 						</div>
@@ -265,7 +265,7 @@ const claimNow = () => {
 					</li>
 				</ul>
 				<img :src="InviteNow" alt="立即邀请" class="invite-now-btn" @click="inviteNow">
-				<div class="text">已邀请{{ state.list.length }}/3</div>
+				<div class="text">已邀请{{ isInvitation == 'true' ? 0 : state.list.length }}/3</div>
 			</div>
 			<div class="welfare-top-box">
 				<div class="title-img">

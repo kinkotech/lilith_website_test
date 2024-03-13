@@ -29,7 +29,7 @@ const clipboard = new Clipboard('.copy-btn'); // .copy-btn为按钮元素的clas
 
 // 重定向到活动页面
 if (isInvitation.value == 'true') {
-    router.push('/')
+    router.push('/?isInvitation=true')
 }
 
 clipboard.on('success', (e) => {

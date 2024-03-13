@@ -2,7 +2,7 @@
 import { ref, reactive } from 'vue';
 import wx from 'weixin-js-sdk';
 import Clipboard from 'clipboard';
-import { showToast } from 'vant';
+import { couponListProps, showToast } from 'vant';
 import 'vant/es/toast/style';
 import api from '@/api';
 import {useRouter} from 'vue-router';
@@ -20,7 +20,7 @@ const state = reactive({
     signature: '',
 	text: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站https://test-lilith.kinkotec.cn/?isInvitation=true',
 	desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...',
-    shareUrl: location.href + '?isInvitation=true',
+    shareUrl: location.href,
     title: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站',
     shareImgUrl: 'https://test-lilith.kinkotec.cn/share.png'
 })
@@ -28,7 +28,7 @@ const state = reactive({
 const clipboard = new Clipboard('.copy-btn'); // .copy-btn为按钮元素的class名称或选择器
 
 // 重定向到活动页面
-if (isInvitation.value == 'true') {
+if (!isInvitation.value) {
     router.push('/?isInvitation=true')
 }
 
@@ -95,7 +95,7 @@ const share = (params: any) => {
 // 分享接口
 const getShareParam = async () => {
     let params = {
-        url: location.href + '?isInvitation=true'
+        url: location.href
     }
     await api.getShare(params).then(res => {
         console.log('getShare', res)

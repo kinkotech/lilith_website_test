@@ -35,6 +35,53 @@ clipboard.on('error', () => {
     console.warn('无法复制到剪贴板！');
 });
 
+// 分享
+const share = (params) => {
+    let { appId, timestamp, nonceStr, signature, title, fxUrl, fxImgUrl, desc } = params;
+    console.log(params)
+    wx.config({
+        debug: false,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId,        // 必填，公众号的唯一标识，填自己的！
+        timestamp, // 必填，生成签名的时间戳，刚才接口拿到的数据
+        nonceStr,   // 必填，生成签名的随机串
+        signature, // 必填，签名，见附录1
+        jsApiList: [
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage'
+        ]
+    })
+
+    wx.ready(function () {
+        //分享到朋友圈
+        wx.onMenuShareTimeline({
+            title,   // 分享时的标题
+            link: fxUrl,     // 分享时的链接
+            imgUrl: fxImgUrl,    // 分享时的图标
+            success: function () {
+                showToast("分享成功");
+            },
+            cancel: function () {
+                showToast("取消分享");
+            }
+        });
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+            title,
+            desc, 
+            link: fxUrl,
+            imgUrl: fxImgUrl,
+            type: 'link',
+            dataUrl: '', 
+            success: function () {
+                showToast("分享成功");
+            },
+            cancel: function () {
+                showToast("取消分享");
+            }
+        });
+    })
+}
+
 // 分享接口
 const getShareParam = async () => {
     await api.getShare().then(res => {
@@ -43,55 +90,12 @@ const getShareParam = async () => {
         state.timestamp = res.timestamp;
         state.nonceStr = res.nonceStr;
         state.signature = res.signature;
+        share(state)
     })
 }
-await getShareParam()
+getShareParam()
 
-let { appId, timestamp, nonceStr, signature, title, fxUrl, fxImgUrl, desc } = state;
-console.log(state)
 
-// 分享
-wx.config({
-    debug: false,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    appId,        // 必填，公众号的唯一标识，填自己的！
-    timestamp, // 必填，生成签名的时间戳，刚才接口拿到的数据
-    nonceStr,   // 必填，生成签名的随机串
-    signature, // 必填，签名，见附录1
-    jsApiList: [
-    'onMenuShareTimeline',
-    'onMenuShareAppMessage'
-    ]
-})
-
-wx.ready(function () {
-    //分享到朋友圈
-    wx.onMenuShareTimeline({
-        title,   // 分享时的标题
-        link: fxUrl,     // 分享时的链接
-        imgUrl: fxImgUrl,    // 分享时的图标
-        success: function () {
-            showToast("分享成功");
-        },
-        cancel: function () {
-            showToast("取消分享");
-        }
-    });
-    //分享给朋友
-    wx.onMenuShareAppMessage({
-        title,
-        desc, 
-        link: fxUrl,
-        imgUrl: fxImgUrl,
-        type: 'link',
-        dataUrl: '', 
-        success: function () {
-            showToast("分享成功");
-        },
-        cancel: function () {
-            showToast("取消分享");
-        }
-    });
-})
 </script>
 
 <template>

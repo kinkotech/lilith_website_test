@@ -40,9 +40,9 @@ const share = (params: any) => {
     let { appId, timestamp, nonceStr, signature, title, fxUrl, fxImgUrl, desc } = params;
     console.log('params', params)
     wx.config({
-        debug: false,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: true,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId,        // 必填，公众号的唯一标识，填自己的！
-        timestamp, // 必填，生成签名的时间戳，刚才接口拿到的数据
+        timestamp: Number(timestamp), // 必填，生成签名的时间戳，刚才接口拿到的数据
         nonceStr,   // 必填，生成签名的随机串
         signature, // 必填，签名，见附录1
         jsApiList: [

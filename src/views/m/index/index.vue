@@ -133,7 +133,7 @@ const inviteNow = () => {
 		if (isInvitation.value == 'true') {
 			showEnd.value = true
 		} else {
-			router.push('/share')
+			router.push('/share?isInvitation=false')
 		}
 		
 	}

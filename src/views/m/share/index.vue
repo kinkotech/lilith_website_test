@@ -15,7 +15,7 @@ const state = reactive({
 	desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...',
     fxUrl: 'https://test-lilith.kinkotec.cn/?isInvitation=true',
     title: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站',
-    fxImgUrl: 'https://test-lilith.kinkotec.cn/fx.png'
+    fxImgUrl: 'https://test-lilith.kinkotec.cn/share.png'
 })
 
 const clipboard = new Clipboard('.copy-btn'); // .copy-btn为按钮元素的class名称或选择器

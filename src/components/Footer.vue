@@ -3,6 +3,7 @@ import LilisiLogo from '@/assets/img/lilisi-logo.png';
 import bqMod from '@/assets/img/bqMod.png';
 import Jubao from '@/assets/img/jubao.png';
 import Youhai from '@/assets/img/youhai.png';
+import age from '@/assets/img/16plus.png'
 
 const list = [{
 	text: '上海莉莉丝网络科技有限公司 上海市嘉定区银翔路655号1幢11层1116室'
@@ -41,10 +42,11 @@ const list = [{
 				<a href="https://www.lilith.com/termofservice" class="item">服务条款</a>
 				<a href="https://www.lilith.com/privacy"class="item">隐私协议</a>
 			</p>
-			<p><span class="mr1">©</span>莉莉丝游戏版权所有</p>
+			<p>©莉莉丝游戏版权所有</p>
 			<p class="flx">
 				<a href="http://www.shjbzx.cn/" class="item"><img :src="Jubao" alt=""></a>
 				<a href="https://www.12377.cn/" class="item"><img :src="Youhai" alt=""></a>
+				<a href="#" class="item-age"><img :src="age" alt=""></a>
 			</p>
 		</div>
     </div>
@@ -89,15 +91,16 @@ const list = [{
 					width: 1.546667rem;
     				height: 0.613333rem;
 					text-align: center;
+					color: #fff;
 					&:last-child {
 						margin-left: .1rem;
 					}
 				}
+				.item-age {
+					width: .55rem;
+				}
 			}
 		}
-	}
-	.mr1 {
-		margin-right: .1rem;
 	}
 }
 </style>

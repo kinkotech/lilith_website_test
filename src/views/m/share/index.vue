@@ -13,7 +13,7 @@ const state = reactive({
     signature: '',
 	text: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站https://test-lilith.kinkotec.cn/',
 	desc: '就差你啦!助我领取《剑与远征:启程》新春红包封面点击链接[立即预约]完成...',
-    fxUrl: 'https://lilith.kinkotec.cn/?isInvitation=true',
+    fxUrl: 'https://lilith.kinkotec.cn',
     title: '邀请好友预约，免费得红包封面!-剑与远征:启程官方网站',
     fxImgUrl: 'https://test-lilith.kinkotec.cn/fx.png'
 })
@@ -38,7 +38,7 @@ clipboard.on('error', () => {
 // 分享
 const share = (params: any) => {
     let { appId, timestamp, nonceStr, signature, title, fxUrl, fxImgUrl, desc } = params;
-    console.log(params)
+    console.log('params', params)
     wx.config({
         debug: false,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId,        // 必填，公众号的唯一标识，填自己的！
@@ -85,7 +85,7 @@ const share = (params: any) => {
 // 分享接口
 const getShareParam = async () => {
     await api.getShare().then(res => {
-        console.log(res)
+        console.log('getShare', res)
         state.appId = res.APP_ID;
         state.timestamp = res.timestamp;
         state.nonceStr = res.nonceStr;

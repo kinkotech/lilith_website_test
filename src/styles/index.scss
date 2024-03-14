@@ -11,6 +11,8 @@
 html,
 body,
 #app {
+	display: flex;
+    justify-content: center;
 	height: 100%;
 	color: #333333;
 	font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;

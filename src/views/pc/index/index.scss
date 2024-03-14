@@ -271,6 +271,7 @@
 			position: relative;
 			.title-top {
 				width: 3.3rem;
+				height: 1.2rem;
 			}
 
 			.title {
@@ -285,11 +286,10 @@
 				}
 			}
 			.text-box {
-				margin-top: .5rem;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-	
+				margin-top: .2rem;
 				p {
 					width: 80%;
 					color: #911805;
@@ -324,14 +324,14 @@
 				width: 2.4rem;
 				position: absolute;
 				left: .8rem;
-				top: 1rem;
+				top: .5rem;
 				z-index: 9;
 			}
 			.fireworks {
 				width: 2.4rem;
 				position: absolute;
 				right: .8rem;
-				top: 0;
+				top: -.5rem;
 				z-index: 9;
 			}
 			

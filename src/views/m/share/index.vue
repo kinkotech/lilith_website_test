@@ -33,7 +33,6 @@ if (!isInvitation.value) {
 }
 
 clipboard.on('success', (e) => {
-    console.log('已复制到剪贴板！');
     showToast('复制成功');
     e.clearSelection(); // 清除选中文本
     //跟踪事件的的埋点
@@ -70,10 +69,10 @@ const share = (params: any) => {
             link: shareUrl,     // 分享时的链接
             imgUrl: shareImgUrl,    // 分享时的图标
             success: function () {
-                console.log("分享成功");
+                // success
             },
             cancel: function () {
-                console.log("取消分享");
+                // cancel
             }
         });
         // “分享给朋友”及“分享到QQ”
@@ -83,10 +82,10 @@ const share = (params: any) => {
             link: shareUrl,
             imgUrl: shareImgUrl,
             success: function () {
-                console.log("分享成功");
+                // success 
             },
             cancel: function () {
-                console.log("取消分享");
+                // cancel
             }
         });
     })
@@ -98,7 +97,6 @@ const getShareParam = async () => {
         url: location.href
     }
     await api.getShare(params).then(res => {
-        console.log('getShare', res)
         state.appId = res.APP_ID;
         state.timestamp = res.timestamp;
         state.nonceStr = res.nonceStr;

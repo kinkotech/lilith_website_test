@@ -5,7 +5,7 @@
 }
 .activity {
 	width: 10rem;
-	height: 93.5rem;
+	height: 97rem;
 	background: url('@/assets/img/bg.jpg') no-repeat;
 	background-size: 100% auto;
 	font-family: 思源黑体(Source Han Sans);
@@ -264,7 +264,7 @@
 		}
 		.use-title-box,.tips-box {
 			width: 100%;
-			padding: 2rem 0 0 0;
+			padding: 1.5rem 0 0 0;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -308,14 +308,14 @@
 				width: 2.4rem;
 				position: absolute;
 				left: .8rem;
-				top: 0;
+				top: -.5rem;
 				z-index: 9;
 			}
 			.star {
 				width: 2.4rem;
 				position: absolute;
 				right: .8rem;
-				top: 1rem;
+				top: .2rem;
 				z-index: 9;
 			}
 		}

@@ -97,7 +97,7 @@ const list = [{
 					}
 				}
 				.item-age {
-					width: .55rem;
+					width: .65rem;
 				}
 			}
 		}

@@ -7,7 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    copy: typeof import('./src/components/pc/Footer copy.vue')['default']
     EndDialog: typeof import('./src/components/EndDialog.vue')['default']
+    Foote: typeof import('./src/components/pc/Foote.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']

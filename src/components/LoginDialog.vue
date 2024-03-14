@@ -74,7 +74,6 @@ const sendVerificationCode = () => {
 // 调取登录接口
 const login = async (params: any) => {
 	await api.login(params).then((res: any) => {
-		console.log(res,'---')
 		// 测试toast，正式开发需按照接口异常结果,根据错误码，返回对应toast内容
 		// showToast('系统繁忙，请稍后重试');
 		// showToast('操作频繁，请稍后重试');
@@ -89,7 +88,6 @@ const login = async (params: any) => {
 const onSubmit = (values: any) => {
 	// 手机号格式校验，根据需求可修改正则
 	const phoneReg = /^1(3|4|5|6|7|8|9)\d{9}$/;
-	console.log(!phoneReg.test(values.number),'99999')
 
 	if (values.number == '') {
 		showToast('请输入手机号');
@@ -103,7 +101,7 @@ const onSubmit = (values: any) => {
 	} else if (!values.radio) {
 		showToast('请先勾选服务条款和隐私协议');
 	} else {
-		
+		// 开发环境用于效果测试。正式环境通过接口获取
 		sessionStorage.set('friendsList', list);
 		storage.set('token', 'token-test')
 		login(values)
@@ -124,7 +122,6 @@ const onSubmit = (values: any) => {
 		}, 4000)
 	}
 
-	console.log('submit', values);
 	//跟踪事件的的埋点
 	(window as any).gtag('event', 'cta_click', {
 		event_category: 'click',

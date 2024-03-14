@@ -121,13 +121,10 @@ getShareParam()
 
 <style lang="scss" scoped>
 @import '@/styles/variables.scss';
-#app {
-    width: 100%;
-}
 .share {
     width: 10rem;
     height: 100%;
-    // margin: 0 auto;
+    margin: 0 auto;
     background: $dialog-background-color;
     font-family: 思源黑体(Source Han Sans);
     &-box {

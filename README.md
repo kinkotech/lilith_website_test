@@ -86,7 +86,7 @@ pnpm lint
 
 三、分享地址：<https://test-lilith.kinkotec.cn/share>
 
-该分享页面引入微信sdk，通过调用微信分享api实现分享功能，获取微信所需的appId、timestamp、nonceStr、signature。
+该分享页面引入微信SDK，通过调用微信分享API实现分享功能，获取微信所需的appId、timestamp、nonceStr、signature。
 
 目前，在微信窗口中，以链接形式进入活动页面，分享后以网址的形式展示；以卡片形式进入活动页面，分享后以卡片的形式展示。
 

@@ -10,7 +10,6 @@ const sequenceCode = '123123'; // 序列码
 const clipboard = new Clipboard('.button'); // .copy-btn为按钮元素的class名称或选择器
 
 clipboard.on('success', (e) => {
-    console.log('已复制到剪贴板！');
     showToast('已复制，快去粘贴吧～');
     e.clearSelection(); // 清除选中文本
 	(window as any).gtag('event', 'cta_click', {

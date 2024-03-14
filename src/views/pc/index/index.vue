@@ -3,7 +3,7 @@ import { ref, reactive } from 'vue';
 import { storage, sessionStorage } from '@/utils/storage';
 import {useRouter} from 'vue-router';
 
-import Footer from '@/components/Footer.vue';
+import Footer from '@/components/pc/Footer.vue';
 import LoginDialog from "@/components/LoginDialog.vue";
 import ScanDialog from '@/components/ScanDialog.vue';
 import TipDialog from '@/components/TipDialog.vue';

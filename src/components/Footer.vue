@@ -94,10 +94,16 @@ const list = [{
 					color: #fff;
 					&:last-child {
 						margin-left: .1rem;
+						
+					}
+					img {
+						height: 0.55rem;
 					}
 				}
 				.item-age {
-					width: .55rem;
+					img {
+						height: 0.55rem;
+					}
 				}
 			}
 		}

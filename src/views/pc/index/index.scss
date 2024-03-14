@@ -375,7 +375,7 @@
 			}
 
 			.list {
-				width: 64%;
+				width: 66%;
 
 				.item {
 					margin-top: .05rem;
@@ -400,4 +400,7 @@
 input::placeholder {
     color: #A63A20;
 	font-weight: normal;
+}
+::v-deep .item-age {
+	width: .65rem;
 }

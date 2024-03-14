@@ -2,12 +2,14 @@
 import { ref, reactive } from 'vue';
 import { storage, sessionStorage } from '@/utils/storage';
 import {useRouter} from 'vue-router';
+
 import Footer from '@/components/Footer.vue';
 import LoginDialog from "@/components/LoginDialog.vue";
 import ScanDialog from '@/components/ScanDialog.vue';
 import TipDialog from '@/components/TipDialog.vue';
 import EndDialog from '@/components/EndDialog.vue';
 import RedEnvelopeDialog from '@/components/RedEnvelopeDialog.vue';
+
 import Login from '@/assets/img/login.png';
 import Logo from '@/assets/img/logo.png';
 import User from '@/assets/img/user.png';
@@ -17,11 +19,10 @@ import ClaimNowDisabled from '@/assets/img/claim-now-disabled.png';
 import InviteNow from '@/assets/img/invite-now.png';
 import Qcode from '@/assets/img/qcode.png';
 import Title from '@/assets/img/title.png';
-import Wx from '@/assets/img/wx.png'
-import Dy from '@/assets/img/dy.png';
-import Tap from '@/assets/img/tap.png';
-import Bilibili from '@/assets/img/bilibili.png';
 import RuleTitle from '@/assets/img/rule-title.png';
+
+import { logoList, ruleList } from '@/common/data';
+
 import "./index.scss";
 
 const router = useRouter();
@@ -41,46 +42,9 @@ let isInvitation = ref(route.query.isInvitation as string); // 通过地址参�
 
 const state = reactive({
 	token: storage.get('token') || '',
+	// 开发环境用于效果测试。正式环境通过接口获取
 	list: sessionStorage.get('friendsList') || [] // 邀请人数
 })
-
-// logo
-const logoList = [{
-	id: '001',
-	icon: Wx,
-	name: 'wx'
-}, {
-	id: '002',
-	icon: Dy,
-	name: 'dy',
-	hrefUrl: 'https://www.douyin.com/user/MS4wLjABAAAAvNiUf-jWyStihk35nRZm1nObd8mDYnaD47ywQPl5NPzGL0SQNR8Iwq4t2kvX9j58?previous_page=app_code_link'
-}, {
-	id: '003',
-	icon: Tap,
-	name: 'tap',
-	hrefUrl: 'https://www.taptap.cn/app/241042'
-}, {
-	id: '004',
-	icon: Bilibili,
-	name: 'bilibili',
-	hrefUrl: 'https://space.bilibili.com/3493138475780593?spm_id_from=333.337.0.0'
-}]
-// 规则内容
-const ruleList = [{
-	text: '1.活动时间:2024年2月5日11:00至2024年2月14日23:59'
-}, {
-	text: '2.活动期间内，每成功邀请1位新玩家预约公测，即可获得1次助力。成功邀请3位新玩家预约公测后，即可领取新年限定红包封面（已预约的玩家不计入）'
-}, {
-	text: '3.红包封面每人仅可领取一次，不可重复领取'
-}, {
-	text: '4.该红包封面为微信红包封面（非实物），完成领取条件后复制序列码，打开微信聊天页面-点击右下方“＋”选择红包-点击红包封面-点击右上角添加-粘贴领取序列码即可'
-}, {
-	text: '5.红包封面有效期：成功领取封面后，可在3个月（自然月）内无限次使用，有效期截止日当天24点前均可使用。超过有效期后，已领取的封面将自动失效，无法再次使用。其中，已发送的红包展示不会受到影响'
-}, {
-	text: '6.活动期间如出现问题，或对活动流程有疑问，可以保存活动页面中的二维码，前往微信添加“启程福利官-小程”进行咨询'
-}, {
-	text: '7.本次活动《剑与远征：启程》官方拥有活动最终解释权'
-}]
 
 // 打开登录窗口
 const showLoginPopup = () => {
@@ -122,7 +86,6 @@ const closeEndPop = (val: boolean) => {
 // 关闭获得红包的窗口
 const closeRedEnvelopePop = (val: boolean, sequenceCode: string) => {
 	showRedEnvelope.value = val;
-	console.log(sequenceCode)
 }
 // 立即邀请
 const inviteNow = () => {
